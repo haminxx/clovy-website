@@ -1,3 +1,1 @@
-# Clovy website
-
-Marketing site for Clovy.
+Clovy, build by Christian, Julian, Youna
