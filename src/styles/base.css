@@ -33,7 +33,8 @@
   --hairline: #e5e5e5;
 
   --font: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Inter', 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
+    Roboto, 'Helvetica Neue', Arial, 'Apple SD Gothic Neo', Pretendard, 'Noto Sans KR',
+    'Malgun Gothic', sans-serif;
 
   /* Type ramp (design px @1440) */
   --fs-wordmark: clamp(28px, 3.333vw, 48px); /* 48 */
@@ -46,6 +47,10 @@
   --fs-step-number: clamp(23px, 2.639vw, 38px); /* 38 */
   --fs-step-title: clamp(19px, 2.222vw, 32px); /* 32 */
   --fs-small: clamp(15px, 1.667vw, 24px); /* 24 */
+
+  /* Inter runs wider than the SF Pro the artboard was drawn in; a touch of
+     negative tracking brings body copy back to the intended line lengths. */
+  --track-body: -0.015em;
 
   /* Frame details */
   --phone-border: 3px;
@@ -134,6 +139,13 @@ a {
   gap: clamp(20px, 5.069vw, 73px); /* About → Download pill */
 }
 
+/* The language switch rides closer to About than About does to the pill. */
+.site-nav__group {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 1.944vw, 28px);
+}
+
 .site-nav__link {
   font-size: var(--fs-nav);
   font-weight: 700;
@@ -143,6 +155,68 @@ a {
 
 .site-nav__link:hover {
   opacity: 0.6;
+}
+
+/* ------------------------------------------------------------ language */
+
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(4px, 0.417vw, 6px);
+  margin: 0;
+  padding: 0 clamp(7px, 0.694vw, 10px);
+  min-height: clamp(26px, 2.778vw, 40px);
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-size: clamp(13px, 1.389vw, 20px);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+}
+
+.lang-toggle:hover {
+  background: rgba(34, 34, 34, 0.06);
+}
+
+.lang-toggle:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+
+.lang-toggle__sep {
+  opacity: 0.35;
+}
+
+.lang-toggle__slot {
+  position: relative;
+  display: grid;
+  justify-items: center;
+}
+
+/* Reserves the bold width in every state so emphasis never nudges the row. */
+.lang-toggle__slot::after {
+  content: attr(data-label);
+  grid-area: 1 / 1;
+  height: 0;
+  visibility: hidden;
+  font-weight: 700;
+}
+
+.lang-toggle__label {
+  grid-area: 1 / 1;
+}
+
+.lang-toggle__underline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.28em;
+  height: 1.5px;
+  border-radius: 1.5px;
+  background: currentColor;
 }
 
 /* ---------------------------------------------------------------- buttons */
@@ -161,10 +235,12 @@ a {
   opacity: 0.92;
 }
 
-/* Nav "Download" — 177 × 51 square-cornered black block (Figma 637:6329). */
+/* Nav "Download" — the artboard's 177 × 51 block (Figma 637:6329), rounded and
+   in Clovy green so it reads as the brand action rather than an Apple badge. */
 .btn--nav {
-  background: #000000;
+  background: var(--green);
   color: #ffffff;
+  border-radius: 999px;
   font-size: var(--fs-nav);
   font-weight: 700;
   letter-spacing: -0.01em;
@@ -173,16 +249,12 @@ a {
   padding-inline: clamp(10px, 0.972vw, 14px);
 }
 
-/* Hero + closing CTA — 441 × 71 pill (Figma 637:6359 / 637:6419). */
-.btn--cta {
-  width: min(100%, clamp(280px, 30.625vw, 441px));
-  min-height: clamp(48px, 4.931vw, 71px);
-  border: 1px solid var(--hairline);
+.btn--pill {
+  min-height: clamp(44px, 3.75vw, 54px);
   border-radius: 999px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-  font-size: var(--fs-body);
-  font-weight: 400;
-  padding-inline: 20px;
+  font-size: clamp(16px, 1.25vw, 18px);
+  font-weight: 700;
+  padding-inline: 28px;
 }
 
 .btn--green {
@@ -190,9 +262,36 @@ a {
   color: #ffffff;
 }
 
-.btn--black {
-  background: #000000;
-  color: #ffffff;
+/* ------------------------------------------------------- App Store badge */
+
+/* Apple's badge artwork, used unmodified per the App Store Marketing
+   Guidelines: only the rendered height is set, the width follows the artwork's
+   own ratio, and nothing is layered over it. The 48px floor keeps it above
+   Apple's 40px onscreen minimum at every breakpoint, and the surrounding
+   margins stay well clear of the required quarter-height of clear space. */
+.store-badge {
+  display: block;
+  width: fit-content;
+  line-height: 0;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.store-badge:hover {
+  transform: translateY(-1px);
+  opacity: 0.92;
+}
+
+.store-badge:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 6px;
+  border-radius: 4px;
+}
+
+.store-badge__art {
+  display: block;
+  height: clamp(48px, 4.931vw, 71px);
+  width: auto;
+  max-width: none;
 }
 
 /* ---------------------------------------------------------------- footer */
@@ -209,7 +308,7 @@ a {
   gap: 16px 32px;
   flex-wrap: wrap;
   min-height: clamp(32px, 3.194vw, 46px);
-  padding-inline: clamp(24px, 4.236vw, 61px) clamp(24px, 2.361vw, 34px);
+  padding-inline: clamp(24px, 4.236vw, 61px) clamp(24px, 1.944vw, 28px);
 }
 
 .site-footer__links {
@@ -217,7 +316,7 @@ a {
   align-items: center;
   gap: clamp(18px, 3.194vw, 46px);
   font-size: var(--fs-small);
-  line-height: 1.4;
+  line-height: 1.667; /* 40 of the artboard's 24px footer type */
 }
 
 .site-footer__links a {
@@ -277,5 +376,23 @@ a {
 
   .site-footer__links {
     flex-wrap: wrap;
+  }
+}
+
+/* Wordmark, switch, About and the pill stop fitting on one line around here. */
+@media (max-width: 559px) {
+  .site-header {
+    padding-block: 20px;
+  }
+
+  .site-header__inner {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .site-nav {
+    width: 100%;
+    justify-content: space-between;
+    gap: 16px;
   }
 }

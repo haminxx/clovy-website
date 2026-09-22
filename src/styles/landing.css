@@ -11,18 +11,22 @@
 }
 
 .section-body {
-  margin: clamp(8px, 0.903vw, 13px) 0 0;
+  margin: clamp(7px, 0.764vw, 11px) 0 0;
   font-size: var(--fs-body);
   font-weight: 400;
+  letter-spacing: var(--track-body);
   line-height: 1.429;
   text-wrap: pretty;
 }
 
 /* ------------------------------------------------------------ phone mock */
 
-/* Device shell: 3px black outline, 30px corner radius. The screenshot inside is
-   cropped exactly as the Figma mask crops it — offsets are percentages of the
-   screen width so the whole mock scales fluidly. */
+/* Device shell: 3px black outline, 30px corner radius. The artboard sizes the
+   *outer* frame, so the ratio lives on the bordered box (border-box sizing) and
+   the screen fills what is left. Everything inside is expressed as a percentage
+   of the screen width — including the vertical offsets, since percentage
+   margins resolve against the containing block's width — so a mock scales as
+   one piece. */
 .pf {
   width: 100%;
   border: var(--phone-border) solid #000000;
@@ -34,6 +38,7 @@
 .pf__screen {
   position: relative;
   width: 100%;
+  height: 100%;
   overflow: hidden;
 }
 
@@ -45,29 +50,33 @@
 
 .pf__shot {
   display: block;
-  width: 100%;
+  max-width: none;
 }
 
-/* Hero — Figma 637:6353, window 272.332 × 493, screenshot offset -29.773px */
-.pf--hero .pf__screen {
-  aspect-ratio: 272.332 / 493;
+/* Hero — Figma 637:6361 frame 271 × 492, mask 637:6353, shot 637:6356 */
+.pf--hero {
+  aspect-ratio: 271 / 492;
 }
 
 .pf--hero .pf__shot {
-  margin-top: -10.937%;
+  width: 102.72%;
+  margin-left: -1.509%;
+  margin-top: -12.744%;
 }
 
-/* "Save your moments" — Figma 637:6362, window 272 × 279 inset 7px from the top */
-.pf--save .pf__screen {
-  aspect-ratio: 272 / 286;
+/* "Save your moments" — Figma 637:6366 frame 271 × 286, mask 637:6362 */
+.pf--save {
+  aspect-ratio: 271 / 286;
 }
 
 .pf--save .pf__window {
-  top: 2.448%;
+  top: 1.429%;
 }
 
 .pf--save .pf__shot {
-  margin-top: -13.235%;
+  width: 102.642%;
+  margin-left: -1.509%;
+  margin-top: -13.585%;
 }
 
 /* Step cards share a 255 × 301 shell that runs off the bottom of the card. */
@@ -76,11 +85,6 @@
 .pf--saveStep {
   border-bottom: 0;
   border-radius: var(--phone-radius) var(--phone-radius) 0 0;
-}
-
-.pf--write .pf__screen,
-.pf--discover .pf__screen,
-.pf--saveStep .pf__screen {
   aspect-ratio: 255 / 301;
 }
 
@@ -96,20 +100,25 @@
   overflow: hidden;
 }
 
+.pf--write .pf__shot {
+  width: 101.886%;
+  margin-left: -1.205%;
+}
+
 .pf--write .pf__slice--top {
-  flex: 0 0 45.515%;
+  flex: 0 0 44.966%;
 }
 
 .pf--write .pf__slice--top .pf__shot {
-  margin-top: -37.446%;
+  margin-top: -39.357%;
 }
 
 .pf--write .pf__slice--bottom {
-  flex: 0 0 54.485%;
+  flex: 0 0 55.034%;
 }
 
 .pf--write .pf__slice--bottom .pf__shot {
-  margin-top: -146.238%;
+  margin-top: -148.996%;
 }
 
 /* Figma 637:6381 — masks the daily-limit caption and the home indicator. */
@@ -122,42 +131,48 @@
   background: var(--app-bg);
 }
 
-/* 02 Discover — Figma 637:6383, window inset 9px from the top */
+/* 02 Discover — Figma 637:6383, mask inset 6px below the screen top */
 .pf--discover .pf__window {
-  top: 2.99%;
+  top: 2.013%;
 }
 
 .pf--discover .pf__shot {
-  margin-top: -33.87%;
+  width: 103.156%;
+  margin-left: -1.606%;
+  margin-top: -34.94%;
 }
 
-/* 03 Save — Figma 637:6390, window inset 25px, with three clover marks on top */
+/* 03 Save — Figma 637:6390, mask inset 22px, with three clover marks on top */
 .pf--saveStep .pf__window {
-  top: 8.306%;
+  top: 7.383%;
 }
 
 .pf--saveStep .pf__shot {
-  margin-top: -71.92%;
+  width: 101.884%;
+  margin-left: -1.205%;
+  margin-top: -73.275%;
 }
 
+/* Exported with their stroke bleed, so each mark is wider than the 13.4px node
+   it sits in and is offset back by that bleed. */
 .pf__mark {
   position: absolute;
-  width: 6.871%;
+  width: 6.995%;
 }
 
 .pf__mark--1 {
-  left: 28.43%;
-  top: 28.89%;
+  left: 27.739%;
+  top: 28.678%;
 }
 
 .pf__mark--2 {
-  left: 68.11%;
-  top: 53.83%;
+  left: 68.133%;
+  top: 53.443%;
 }
 
 .pf__mark--3 {
-  left: 24.21%;
-  top: 59.03%;
+  left: 23.443%;
+  top: 58.599%;
 }
 
 /* ------------------------------------------------------------------ hero */
@@ -166,15 +181,18 @@
   padding-top: clamp(8px, 1.528vw, 22px);
 }
 
+/* The artboard sits the copy a little below the optical centre of the phone, so
+   both columns hang off the top and the copy carries its own offset. */
 .hero__inner {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   padding-inline: clamp(24px, 15.486vw, 223px) clamp(24px, 16.25vw, 234px);
 }
 
 .hero__copy {
   min-width: 0;
+  padding-top: clamp(12px, 1.736vw, 25px);
 }
 
 .hero__title {
@@ -186,18 +204,20 @@
 }
 
 .hero__lede {
-  margin: clamp(12px, 1.667vw, 24px) 0 0;
+  margin: clamp(20px, 2.951vw, 42.5px) 0 0;
   font-size: var(--fs-lede);
   font-weight: 400;
+  letter-spacing: var(--track-body);
   line-height: 1.25;
 }
 
-.hero__copy .btn {
+.hero__cta {
   margin-top: clamp(24px, 3.125vw, 45px);
 }
 
 .hero__art {
-  flex: 0 0 27.67%;
+  flex: 0 0 auto;
+  width: clamp(200px, 18.819vw, 271px); /* 271 of the 1440 artboard */
 }
 
 /* ---------------------------------------------------------- save moments */
@@ -208,17 +228,25 @@
 
 .save__inner {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   padding-inline: clamp(24px, 11.736vw, 169px) clamp(24px, 16.25vw, 234px);
 }
 
 .save__copy {
   min-width: 0;
+  padding-top: clamp(24px, 4.097vw, 59px);
+}
+
+/* This heading carries 70 of leading on the artboard, so its body sits tighter
+   than the one under the 60-leading headings elsewhere. */
+.save__copy .section-body {
+  margin-top: clamp(4px, 0.347vw, 5px);
 }
 
 .save__art {
-  flex: 0 0 26.23%;
+  flex: 0 0 auto;
+  width: clamp(200px, 18.819vw, 271px);
 }
 
 /* -------------------------------------------------------------- features */
@@ -246,7 +274,7 @@
   aspect-ratio: 335 / 451;
   border: 3px solid #000000;
   background: #ffffff;
-  padding: clamp(8px, 0.903vw, 13px) 0 0;
+  padding: clamp(10px, 1.111vw, 16px) 0 0;
 }
 
 /* Text is inset from the card edge; the phone mock is not, so it keeps the
@@ -275,10 +303,11 @@
 }
 
 .step__body {
-  margin: clamp(6px, 0.833vw, 12px) 0 0;
+  margin: clamp(4px, 0.347vw, 5px) 0 0;
   font-size: var(--fs-small);
   font-weight: 400;
-  line-height: 1.3;
+  letter-spacing: var(--track-body);
+  line-height: 1.25; /* 30 of the artboard's 24px card type */
 }
 
 .step__art {
@@ -292,11 +321,16 @@
   padding-block: clamp(60px, 9.236vw, 133px) clamp(60px, 9.375vw, 135px);
 }
 
+/* The artboard indents this copy to 192 and stops the art at 162, which leaves
+   the two body lines just 39px of slack in SF Pro and none at all in the Inter
+   fallback. Squaring the copy up with the two sections above it (169) and
+   letting the art run out to the site gutter keeps the artboard's two-line
+   break intact in either face. */
 .grow__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-inline: clamp(24px, 13.333vw, 192px) clamp(24px, 11.25vw, 162px);
+  padding-inline: clamp(24px, 11.736vw, 169px) clamp(24px, 7.361vw, 106px);
 }
 
 .grow__copy {
@@ -304,13 +338,14 @@
 }
 
 .grow__copy .section-body {
-  margin-top: clamp(10px, 1.389vw, 20px);
+  margin-top: clamp(12px, 1.389vw, 20px);
 }
 
 /* Figma 637:6421–637:6425 — seed clover, arrow, grown Clovy silhouette. */
 .grow__art {
   position: relative;
-  flex: 0 0 31.019%;
+  flex: 0 0 auto;
+  width: clamp(220px, 23.403vw, 337px); /* 337 of the 1440 artboard */
   aspect-ratio: 337 / 133;
 }
 
@@ -387,11 +422,40 @@
   line-height: 1.154;
 }
 
-.closing__inner .btn {
+.closing__cta {
   margin-top: clamp(20px, 2.5vw, 36px);
 }
 
-/* ---------------------------------------------------------------- mobile */
+/* --------------------------------------------------------- narrow screens */
+
+/* The side-by-side sections run out of room for their authored line breaks
+   before the rest of the page does, so they stack first. */
+@media (max-width: 1023px) {
+  .hero__inner,
+  .save__inner,
+  .grow__inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: clamp(28px, 4vw, 40px);
+    padding-inline: clamp(24px, 7.361vw, 106px);
+  }
+
+  .hero__copy,
+  .save__copy {
+    padding-top: 0;
+  }
+
+  .hero__art,
+  .save__art {
+    width: min(271px, 78%);
+    align-self: center;
+  }
+
+  .grow__art {
+    width: min(337px, 100%);
+    align-self: center;
+  }
+}
 
 @media (max-width: 767px) {
   .br-d {
@@ -401,27 +465,8 @@
   .hero__inner,
   .save__inner,
   .grow__inner {
-    flex-direction: column;
-    align-items: stretch;
     gap: 36px;
     padding-inline: 24px;
-  }
-
-  .hero__art,
-  .save__art {
-    flex: none;
-    width: min(272px, 78%);
-    align-self: center;
-  }
-
-  .grow__art {
-    flex: none;
-    width: min(337px, 100%);
-    align-self: center;
-  }
-
-  .hero__copy .btn {
-    width: 100%;
   }
 
   .features__inner {
