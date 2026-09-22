@@ -1,0 +1,445 @@
+/* Landing page geometry, traced from Figma 637:6325 (1440 × 2896).
+   Horizontal offsets are the artboard's own gutters expressed as vw of 1440;
+   vertical rhythm reproduces the artboard's section gaps. */
+
+.section-title {
+  margin: 0;
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.364;
+}
+
+.section-body {
+  margin: clamp(8px, 0.903vw, 13px) 0 0;
+  font-size: var(--fs-body);
+  font-weight: 400;
+  line-height: 1.429;
+  text-wrap: pretty;
+}
+
+/* ------------------------------------------------------------ phone mock */
+
+/* Device shell: 3px black outline, 30px corner radius. The screenshot inside is
+   cropped exactly as the Figma mask crops it — offsets are percentages of the
+   screen width so the whole mock scales fluidly. */
+.pf {
+  width: 100%;
+  border: var(--phone-border) solid #000000;
+  border-radius: var(--phone-radius);
+  overflow: hidden;
+  background: var(--app-bg);
+}
+
+.pf__screen {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.pf__window {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.pf__shot {
+  display: block;
+  width: 100%;
+}
+
+/* Hero — Figma 637:6353, window 272.332 × 493, screenshot offset -29.773px */
+.pf--hero .pf__screen {
+  aspect-ratio: 272.332 / 493;
+}
+
+.pf--hero .pf__shot {
+  margin-top: -10.937%;
+}
+
+/* "Save your moments" — Figma 637:6362, window 272 × 279 inset 7px from the top */
+.pf--save .pf__screen {
+  aspect-ratio: 272 / 286;
+}
+
+.pf--save .pf__window {
+  top: 2.448%;
+}
+
+.pf--save .pf__shot {
+  margin-top: -13.235%;
+}
+
+/* Step cards share a 255 × 301 shell that runs off the bottom of the card. */
+.pf--write,
+.pf--discover,
+.pf--saveStep {
+  border-bottom: 0;
+  border-radius: var(--phone-radius) var(--phone-radius) 0 0;
+}
+
+.pf--write .pf__screen,
+.pf--discover .pf__screen,
+.pf--saveStep .pf__screen {
+  aspect-ratio: 255 / 301;
+}
+
+/* 01 Write — Figma 637:6373 / 637:6378 splice two crops of the same screenshot
+   so the middle of the compose screen is cut out. */
+.pf--write .pf__window {
+  display: flex;
+  flex-direction: column;
+}
+
+.pf--write .pf__slice {
+  position: relative;
+  overflow: hidden;
+}
+
+.pf--write .pf__slice--top {
+  flex: 0 0 45.515%;
+}
+
+.pf--write .pf__slice--top .pf__shot {
+  margin-top: -37.446%;
+}
+
+.pf--write .pf__slice--bottom {
+  flex: 0 0 54.485%;
+}
+
+.pf--write .pf__slice--bottom .pf__shot {
+  margin-top: -146.238%;
+}
+
+/* Figma 637:6381 — masks the daily-limit caption and the home indicator. */
+.pf--write .pf__cover {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 93%;
+  bottom: 0;
+  background: var(--app-bg);
+}
+
+/* 02 Discover — Figma 637:6383, window inset 9px from the top */
+.pf--discover .pf__window {
+  top: 2.99%;
+}
+
+.pf--discover .pf__shot {
+  margin-top: -33.87%;
+}
+
+/* 03 Save — Figma 637:6390, window inset 25px, with three clover marks on top */
+.pf--saveStep .pf__window {
+  top: 8.306%;
+}
+
+.pf--saveStep .pf__shot {
+  margin-top: -71.92%;
+}
+
+.pf__mark {
+  position: absolute;
+  width: 6.871%;
+}
+
+.pf__mark--1 {
+  left: 28.43%;
+  top: 28.89%;
+}
+
+.pf__mark--2 {
+  left: 68.11%;
+  top: 53.83%;
+}
+
+.pf__mark--3 {
+  left: 24.21%;
+  top: 59.03%;
+}
+
+/* ------------------------------------------------------------------ hero */
+
+.hero {
+  padding-top: clamp(8px, 1.528vw, 22px);
+}
+
+.hero__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: clamp(24px, 15.486vw, 223px) clamp(24px, 16.25vw, 234px);
+}
+
+.hero__copy {
+  min-width: 0;
+}
+
+.hero__title {
+  margin: 0;
+  font-size: var(--fs-h1);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.094;
+}
+
+.hero__lede {
+  margin: clamp(12px, 1.667vw, 24px) 0 0;
+  font-size: var(--fs-lede);
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.hero__copy .btn {
+  margin-top: clamp(24px, 3.125vw, 45px);
+}
+
+.hero__art {
+  flex: 0 0 27.67%;
+}
+
+/* ---------------------------------------------------------- save moments */
+
+.save {
+  padding-top: clamp(56px, 9.236vw, 133px);
+}
+
+.save__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: clamp(24px, 11.736vw, 169px) clamp(24px, 16.25vw, 234px);
+}
+
+.save__copy {
+  min-width: 0;
+}
+
+.save__art {
+  flex: 0 0 26.23%;
+}
+
+/* -------------------------------------------------------------- features */
+
+.features {
+  padding-top: clamp(44px, 6.806vw, 98px);
+}
+
+.features__inner {
+  padding-inline: clamp(24px, 11.597vw, 167px) clamp(24px, 11.736vw, 169px);
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4.484%;
+  list-style: none;
+  margin: clamp(28px, 4.444vw, 64px) 0 0;
+  padding: 0;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: 335 / 451;
+  border: 3px solid #000000;
+  background: #ffffff;
+  padding: clamp(8px, 0.903vw, 13px) 0 0;
+}
+
+/* Text is inset from the card edge; the phone mock is not, so it keeps the
+   40px side margins the artboard gives it. */
+.step__heading,
+.step__body {
+  padding-inline: clamp(10px, 1.111vw, 16px);
+}
+
+.step__heading {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(8px, 0.972vw, 14px);
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.step__number {
+  font-size: var(--fs-step-number);
+}
+
+.step__title {
+  font-size: var(--fs-step-title);
+}
+
+.step__body {
+  margin: clamp(6px, 0.833vw, 12px) 0 0;
+  font-size: var(--fs-small);
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.step__art {
+  width: 77.508%; /* 255 of the card's 329px inner width */
+  margin: auto auto 0;
+}
+
+/* ------------------------------------------------------------------ grow */
+
+.grow {
+  padding-block: clamp(60px, 9.236vw, 133px) clamp(60px, 9.375vw, 135px);
+}
+
+.grow__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: clamp(24px, 13.333vw, 192px) clamp(24px, 11.25vw, 162px);
+}
+
+.grow__copy {
+  min-width: 0;
+}
+
+.grow__copy .section-body {
+  margin-top: clamp(10px, 1.389vw, 20px);
+}
+
+/* Figma 637:6421–637:6425 — seed clover, arrow, grown Clovy silhouette. */
+.grow__art {
+  position: relative;
+  flex: 0 0 31.019%;
+  aspect-ratio: 337 / 133;
+}
+
+.grow__seed {
+  position: absolute;
+  left: 0;
+  top: 8.271%;
+  width: 33.234%;
+}
+
+.grow__line {
+  position: absolute;
+  left: 41.246%;
+  top: 59.023%;
+  width: 10.237%;
+}
+
+.grow__head {
+  position: absolute;
+  left: 50.021%;
+  top: 54.887%;
+  width: 4.112%;
+  aspect-ratio: 13.8564 / 12;
+}
+
+.grow__head > img {
+  display: block;
+  width: 100%;
+  transform: rotate(90deg);
+  transform-origin: center;
+}
+
+.grow__clovy {
+  position: absolute;
+  left: 60.534%;
+  top: 0;
+  display: block;
+  width: 39.466%;
+  aspect-ratio: 1;
+}
+
+.grow__clovy > img {
+  display: block;
+  width: 100%;
+}
+
+.grow__clovy > .grow__question {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 48.12%;
+  transform: translate(-50%, -50%);
+}
+
+/* --------------------------------------------------------------- closing */
+
+.closing {
+  background: var(--band);
+}
+
+.closing__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-block: clamp(40px, 5.625vw, 81px) clamp(40px, 5.208vw, 75px);
+}
+
+.closing__title {
+  margin: 0;
+  font-size: var(--fs-h2-closing);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.154;
+}
+
+.closing__inner .btn {
+  margin-top: clamp(20px, 2.5vw, 36px);
+}
+
+/* ---------------------------------------------------------------- mobile */
+
+@media (max-width: 767px) {
+  .br-d {
+    display: none;
+  }
+
+  .hero__inner,
+  .save__inner,
+  .grow__inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 36px;
+    padding-inline: 24px;
+  }
+
+  .hero__art,
+  .save__art {
+    flex: none;
+    width: min(272px, 78%);
+    align-self: center;
+  }
+
+  .grow__art {
+    flex: none;
+    width: min(337px, 100%);
+    align-self: center;
+  }
+
+  .hero__copy .btn {
+    width: 100%;
+  }
+
+  .features__inner {
+    padding-inline: 24px;
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .step {
+    aspect-ratio: auto;
+    padding: 16px 16px 0;
+  }
+
+  .step__art {
+    width: min(255px, 82%);
+    margin-top: 28px;
+  }
+}
