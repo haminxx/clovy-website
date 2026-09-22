@@ -1,8 +1,8 @@
 # Clovy website
 
-Marketing site for Clovy.
+Clovy, build by Christian, Julian, Youna
 
-Built from the Figma artboard
+Marketing site for Clovy, built from the Figma artboard
 [Landing Page `637:6325`](https://www.figma.com/design/YiRVwZYPfcWCpAuC88p307/Clovy-%EA%B0%9C%EB%B0%9C?node-id=637-6325)
 (1440 × 2896) in the `Clovy 개발` file.
 
