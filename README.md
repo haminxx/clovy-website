@@ -47,6 +47,8 @@ platforms.
 
 ## Deploying to Firebase Hosting
 
+Live at <https://clovy-website.web.app>.
+
 `firebase.json` and `.firebaserc` are committed and point at the `clovy-website`
 project, serve `dist`, and rewrite everything to `index.html` so the client routes
 resolve on a hard refresh.
@@ -58,7 +60,9 @@ firebase deploy --only hosting --project clovy-website
 ```
 
 `firebase deploy` runs `npm run build` first via the `predeploy` hook, so there is
-no need to build by hand.
+no need to build by hand. Run it from the repository root — the hook inherits the
+CLI's working directory. (It must not use `$RESOURCE_DIR`, which a hosting hook
+resolves to the `public` directory, `dist/`.)
 
 To preview a change before it goes live:
 
