@@ -181,15 +181,18 @@
   padding-top: clamp(8px, 1.528vw, 22px);
 }
 
+/* The artboard sits the copy a little below the optical centre of the phone, so
+   both columns hang off the top and the copy carries its own offset. */
 .hero__inner {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   padding-inline: clamp(24px, 15.486vw, 223px) clamp(24px, 16.25vw, 234px);
 }
 
 .hero__copy {
   min-width: 0;
+  padding-top: clamp(12px, 1.736vw, 25px);
 }
 
 .hero__title {
@@ -201,7 +204,7 @@
 }
 
 .hero__lede {
-  margin: clamp(12px, 1.667vw, 24px) 0 0;
+  margin: clamp(20px, 2.951vw, 42.5px) 0 0;
   font-size: var(--fs-lede);
   font-weight: 400;
   letter-spacing: var(--track-body);
@@ -225,13 +228,20 @@
 
 .save__inner {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   padding-inline: clamp(24px, 11.736vw, 169px) clamp(24px, 16.25vw, 234px);
 }
 
 .save__copy {
   min-width: 0;
+  padding-top: clamp(24px, 4.097vw, 59px);
+}
+
+/* This heading carries 70 of leading on the artboard, so its body sits tighter
+   than the one under the 60-leading headings elsewhere. */
+.save__copy .section-body {
+  margin-top: clamp(4px, 0.347vw, 5px);
 }
 
 .save__art {
@@ -416,20 +426,23 @@
   margin-top: clamp(20px, 2.5vw, 36px);
 }
 
-/* ---------------------------------------------------------------- mobile */
+/* --------------------------------------------------------- narrow screens */
 
-@media (max-width: 767px) {
-  .br-d {
-    display: none;
-  }
-
+/* The side-by-side sections run out of room for their authored line breaks
+   before the rest of the page does, so they stack first. */
+@media (max-width: 1023px) {
   .hero__inner,
   .save__inner,
   .grow__inner {
     flex-direction: column;
     align-items: stretch;
-    gap: 36px;
-    padding-inline: 24px;
+    gap: clamp(28px, 4vw, 40px);
+    padding-inline: clamp(24px, 7.361vw, 106px);
+  }
+
+  .hero__copy,
+  .save__copy {
+    padding-top: 0;
   }
 
   .hero__art,
@@ -441,6 +454,19 @@
   .grow__art {
     width: min(337px, 100%);
     align-self: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .br-d {
+    display: none;
+  }
+
+  .hero__inner,
+  .save__inner,
+  .grow__inner {
+    gap: 36px;
+    padding-inline: 24px;
   }
 
   .features__inner {

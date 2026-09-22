@@ -5,13 +5,19 @@ import { useLang } from '../lang'
 
 const STEP_VARIANTS = ['write', 'discover', 'saveStep'] as const
 
-/* Renders one array entry per artboard line; the breaks collapse under 768px. */
+/* Renders one array entry per artboard line. The break is hidden under 768px, so
+   it is preceded by a space that keeps the words apart once the copy reflows. */
 function Lines({ lines }: { lines: string[] }) {
   return (
     <>
       {lines.map((line, index) => (
         <Fragment key={line}>
-          {index > 0 && <br className="br-d" />}
+          {index > 0 && (
+            <>
+              {' '}
+              <br className="br-d" />
+            </>
+          )}
           {line}
         </Fragment>
       ))}
