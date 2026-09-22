@@ -15,7 +15,7 @@ export function LanguageToggle() {
   const reduceMotion = useReducedMotion()
   const transition = reduceMotion
     ? { duration: 0 }
-    : { type: 'spring' as const, stiffness: 460, damping: 34 }
+    : { type: 'spring' as const, stiffness: 260, damping: 26 }
 
   return (
     <button className="lang-toggle" type="button" aria-label={t.a11y.language} onClick={toggle}>
