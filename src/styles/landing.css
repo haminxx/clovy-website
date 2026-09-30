@@ -28,56 +28,28 @@
 .mock-slot--step {
   position: relative;
   overflow: hidden;
+  border: 1.5px solid rgba(34, 34, 34, 0.22);
+  border-bottom: 0;
+  border-radius: 36px 36px 0 0;
 }
 
 .mock-slot--save {
   width: min(250px, 42%);
-  aspect-ratio: 288 / 400;
+  aspect-ratio: 9 / 13;
   flex: 0 0 auto;
   align-self: flex-end;
 }
 
 .mock-slot--step {
-  width: min(250px, 88%);
-  aspect-ratio: 288 / 400;
+  width: min(250px, 86%);
+  aspect-ratio: 9 / 13;
   margin-inline: auto;
 }
 
-/* Visible window is the top two-thirds of the phone. The slot clips the rest. */
+/* The screenshot itself is the phone. Top corners stay rounded; the card cuts the bottom. */
 .phone {
-  container-type: inline-size;
   position: absolute;
-  left: 50%;
-  top: 0;
-  width: calc(100% - 12px);
-  height: auto;
-  aspect-ratio: 288 / 600;
-  transform: translateX(-50%);
-  transition: transform 0.45s cubic-bezier(0.22, 0.7, 0.2, 1);
-}
-
-.phone:hover {
-  transform: translateX(-50%) translateY(-8px);
-}
-
-.phone__shell {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border: 2.8cqi solid #18181b;
-  border-radius: 15.6cqi;
-  background: #18181b;
-  box-shadow: 0 0 2px 2px rgba(255, 255, 255, 0.1), 0 12px 28px rgba(34, 34, 34, 0.14);
-  overflow: hidden;
-}
-
-.phone__glass {
-  position: absolute;
-  inset: 1.4cqi;
-  border: 1cqi solid rgba(63, 63, 70, 0.4);
-  border-radius: 12.8cqi;
-  overflow: hidden;
-  background: #fafaf7;
+  inset: 0;
 }
 
 .phone__screen {
@@ -86,65 +58,6 @@
   height: 100%;
   object-fit: cover;
   object-position: top center;
-}
-
-.phone__island {
-  position: absolute;
-  top: 2.2cqi;
-  left: 50%;
-  z-index: 2;
-  width: 31cqi;
-  height: 7.6cqi;
-  border-radius: 999px;
-  background: #18181b;
-  transform: translateX(-50%);
-}
-
-.phone__key {
-  position: absolute;
-  z-index: 1;
-  width: 2.1cqi;
-  background: #18181b;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
-}
-
-.phone__key--silent,
-.phone__key--up,
-.phone__key--down {
-  left: -2.1cqi;
-  border-radius: 2px 0 0 2px;
-}
-
-.phone__key--silent {
-  top: 13.3%;
-  height: 5.3%;
-}
-
-.phone__key--up {
-  top: 24%;
-  height: 8%;
-}
-
-.phone__key--down {
-  top: 34.7%;
-  height: 8%;
-}
-
-.phone__key--power {
-  right: -2.1cqi;
-  top: 24%;
-  height: 10.7%;
-  border-radius: 0 2px 2px 0;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .phone {
-    transition: none;
-  }
-
-  .phone:hover {
-    transform: translateX(-50%);
-  }
 }
 
 /* ------------------------------------------------------------------ hero */
@@ -175,6 +88,8 @@
 
 .hero__copy {
   min-width: 0;
+  /* Same left edge as "Save your moments" inside the band card. */
+  margin-left: calc(var(--pad) + clamp(24px, 9vw, 129px) - clamp(24px, 7vw, 110px));
 }
 
 .hero__title {
@@ -306,6 +221,7 @@
   grid-template-columns: auto minmax(0, 1fr);
   column-gap: clamp(10px, 1.11vw, 16px);
   align-items: center;
+  margin-bottom: clamp(16px, 1.8vw, 24px);
 }
 
 .step__number {
@@ -341,7 +257,8 @@
 }
 
 .step .mock-slot--step {
-  margin-top: clamp(12px, 1.6vw, 22px);
+  width: min(250px, 86%);
+  margin-top: auto;
 }
 
 /* ------------------------------------------------------------------ grow */
@@ -470,6 +387,10 @@
     flex-direction: column;
     align-items: stretch;
     padding: 28px 24px;
+  }
+
+  .hero__copy {
+    margin-left: 0;
   }
 
   .hero__art,
