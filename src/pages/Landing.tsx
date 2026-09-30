@@ -1,6 +1,7 @@
 import { Fragment } from 'react'
 import { AppStoreBadge } from '../components/AppStoreBadge'
 import { PhoneMockup } from '../components/PhoneMockup'
+import { MotionRoot, Reveal } from '../components/Reveal'
 import { useLang } from '../lang'
 
 const STEP_PHONES = [
@@ -33,6 +34,7 @@ export function Landing() {
   const { t } = useLang()
 
   return (
+    <MotionRoot>
     <main>
       <section className="hero">
         <div className="hero__inner">
@@ -53,27 +55,29 @@ export function Landing() {
 
       <section className="band">
         <div className="band__card save__card">
-          <div className="save__copy">
+          <Reveal className="save__copy">
             <h2 className="section-title">{t.save.title}</h2>
             <p className="section-body">
               <Lines lines={t.save.body} />
             </p>
-          </div>
-          <div className="mock-slot mock-slot--save" data-slot="mock-save">
+          </Reveal>
+          <Reveal className="mock-slot mock-slot--save" delay={0.22}>
             <PhoneMockup src="/assets/save-calendar.png" alt={t.a11y.savePhone} />
-          </div>
+          </Reveal>
         </div>
       </section>
 
       <section className="features" id="features">
         <div className="features__inner">
-          <h2 className="section-title">
+          <Reveal as="h2" className="section-title">
             <Lines lines={t.features.title} />
-          </h2>
-          <p className="section-body features__lede">{t.features.lede}</p>
+          </Reveal>
+          <Reveal as="p" className="section-body features__lede" delay={0.18}>
+            {t.features.lede}
+          </Reveal>
           <ol className="steps">
             {t.features.steps.map((step, index) => (
-              <li className="step" key={step.number}>
+              <Reveal as="li" className="step" key={step.number} delay={0.12 + index * 0.18}>
                 <div className="step__head">
                   <span className="step__number">{step.number}</span>
                   <p className="step__title">{step.title}</p>
@@ -84,7 +88,7 @@ export function Landing() {
                 <div className="mock-slot mock-slot--step" data-slot={STEP_PHONES[index].slot}>
                   <PhoneMockup src={STEP_PHONES[index].src} alt={t.a11y.stepPhones[index]} />
                 </div>
-              </li>
+              </Reveal>
             ))}
           </ol>
         </div>
@@ -92,20 +96,20 @@ export function Landing() {
 
       <section className="band">
         <div className="band__card grow__card">
-          <div className="grow__copy">
+          <Reveal className="grow__copy">
             <h2 className="section-title">{t.grow.title}</h2>
             <p className="section-body">
               <Lines lines={t.grow.body} />
             </p>
-          </div>
-          <div className="grow__art">
+          </Reveal>
+          <Reveal className="grow__art" delay={0.22}>
             <img className="grow__sprout" src="/assets/clover-seed.png" alt={t.a11y.growSeed} />
             <img className="grow__arrow" src="/assets/arrow-right.svg" alt="" aria-hidden="true" />
             <span className="grow__clovy">
               <img src="/assets/clovy-gray.png" alt={t.a11y.growClovy} />
               <img className="grow__question" src="/assets/question-mark.svg" alt="" aria-hidden="true" />
             </span>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -122,13 +126,14 @@ export function Landing() {
           alt=""
           aria-hidden="true"
         />
-        <div className="closing__inner">
+        <Reveal className="closing__inner">
           <h2 className="closing__title">
             <Lines lines={t.closing.title} />
           </h2>
           <AppStoreBadge className="closing__cta" />
-        </div>
+        </Reveal>
       </section>
     </main>
+    </MotionRoot>
   )
 }
