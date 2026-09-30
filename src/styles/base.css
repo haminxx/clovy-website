@@ -74,6 +74,7 @@ img {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  padding-top: var(--header-h);
 }
 
 #root > main {
@@ -95,8 +96,10 @@ a {
 /* ---------------------------------------------------------------- header */
 
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 30;
   height: var(--header-h);
   background: rgba(251, 249, 245, 0.92);

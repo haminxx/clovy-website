@@ -1,13 +1,12 @@
 import { useLang } from '../lang'
 import { CONTACT_GMAIL, PRIVACY_URL } from '../site'
 import { Link } from './Link'
-import { Reveal } from './Reveal'
 
 export function SiteFooter() {
   const { t } = useLang()
 
   return (
-    <Reveal as="footer" className="site-footer" y={18}>
+    <footer className="site-footer">
       <div className="shell site-footer__inner">
         <Link to="/" className="wordmark wordmark--sm" aria-label={t.a11y.home}>
           Clovy
@@ -22,6 +21,6 @@ export function SiteFooter() {
           <span className="site-footer__copy">{t.footer.copyright}</span>
         </div>
       </div>
-    </Reveal>
+    </footer>
   )
 }
