@@ -43,12 +43,13 @@
 /* iPhone shell, sized inside the slot so it cannot stretch the card.
    Hover lifts it slightly; it does not spin or cycle screens. */
 .phone {
+  container-type: inline-size;
   position: absolute;
   left: 50%;
   top: 50%;
   height: 96%;
   width: auto;
-  aspect-ratio: 390 / 844;
+  aspect-ratio: 288 / 600;
   transform: translate(-50%, -50%);
   transition: transform 0.45s cubic-bezier(0.22, 0.7, 0.2, 1);
 }
@@ -57,14 +58,24 @@
   transform: translate(-50%, calc(-50% - 10px));
 }
 
-.phone__bezel {
+.phone__shell {
   position: relative;
   width: 100%;
   height: 100%;
-  padding: 3.2%;
-  border-radius: 18%;
-  background: #1c1c1e;
-  box-shadow: 0 10px 28px rgba(34, 34, 34, 0.12);
+  border: 2.8cqi solid #18181b;
+  border-radius: 15.6cqi;
+  background: #18181b;
+  box-shadow: 0 0 2px 2px rgba(255, 255, 255, 0.1), 0 12px 28px rgba(34, 34, 34, 0.14);
+  overflow: hidden;
+}
+
+.phone__glass {
+  position: absolute;
+  inset: 1.4cqi;
+  border: 1cqi solid rgba(63, 63, 70, 0.4);
+  border-radius: 12.8cqi;
+  overflow: hidden;
+  background: #fafaf7;
 }
 
 .phone__screen {
@@ -73,19 +84,55 @@
   height: 100%;
   object-fit: cover;
   object-position: top center;
-  border-radius: 14%;
-  background: #fafaf7;
 }
 
 .phone__island {
   position: absolute;
-  top: 4.6%;
+  top: 2.2cqi;
   left: 50%;
-  width: 28%;
-  height: 3.4%;
+  z-index: 2;
+  width: 31cqi;
+  height: 7.6cqi;
   border-radius: 999px;
-  background: #000;
+  background: #18181b;
   transform: translateX(-50%);
+}
+
+.phone__key {
+  position: absolute;
+  z-index: 1;
+  width: 2.1cqi;
+  background: #18181b;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+.phone__key--silent,
+.phone__key--up,
+.phone__key--down {
+  left: -2.1cqi;
+  border-radius: 2px 0 0 2px;
+}
+
+.phone__key--silent {
+  top: 13.3%;
+  height: 5.3%;
+}
+
+.phone__key--up {
+  top: 24%;
+  height: 8%;
+}
+
+.phone__key--down {
+  top: 34.7%;
+  height: 8%;
+}
+
+.phone__key--power {
+  right: -2.1cqi;
+  top: 24%;
+  height: 10.7%;
+  border-radius: 0 2px 2px 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -116,12 +163,12 @@
   display: grid;
   grid-template-columns: minmax(0, 0.92fr) minmax(220px, 1.15fr);
   align-items: center;
-  gap: clamp(4px, 1vw, 12px);
+  gap: clamp(20px, 3.5vw, 56px);
   width: 100%;
   max-width: 1440px;
   height: 100%;
   margin-inline: auto;
-  padding-inline: clamp(20px, 8vw, 120px) clamp(8px, 2.2vw, 32px);
+  padding-inline: clamp(24px, 7vw, 110px) clamp(20px, 4.5vw, 72px);
 }
 
 .hero__copy {
@@ -146,14 +193,34 @@
   line-height: 1.25;
 }
 
-.hero__cta {
+.hero__cta-fit {
+  display: grid;
+  width: max-content;
+  max-width: 100%;
   margin-top: clamp(16px, 3dvh, 40px);
 }
 
+.hero__cta-sizer {
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  white-space: nowrap;
+  font-size: var(--fs-h1);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+.hero__cta-fit .hero__cta {
+  width: 100%;
+  min-width: 0;
+  margin-top: 0;
+}
+
 .hero__art {
-  justify-self: start;
-  width: min(720px, 72dvh, 112%);
-  margin-left: -6%;
+  justify-self: end;
+  width: min(620px, 64dvh, 100%);
+  margin-left: 0;
   max-height: calc(100dvh - var(--header-h) - 16px);
 }
 

@@ -43,7 +43,12 @@ export function Landing() {
             <p className="hero__lede">
               <Lines lines={t.hero.lede} />
             </p>
-            <AppStoreBadge className="hero__cta" />
+            <div className="hero__cta-fit">
+              <span className="hero__cta-sizer" aria-hidden="true">
+                {t.hero.title[t.hero.title.length - 1]}
+              </span>
+              <AppStoreBadge className="hero__cta" />
+            </div>
           </div>
           <div className="hero__art">
             <img src="/assets/hero-clovy.png" alt={t.a11y.heroArt} />
