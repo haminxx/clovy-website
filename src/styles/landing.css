@@ -48,28 +48,28 @@
   position: absolute;
   inset: 0;
   box-sizing: border-box;
-  padding: 16px 18px 0;
-  background: #111111;
-  border-radius: 46px 46px 0 0;
+  padding: 5px 6px 0;
+  background: #5c5c5c;
+  border-radius: 42px 42px 0 0;
 }
 
 .phone__screen {
   position: relative;
   height: 100%;
   overflow: hidden;
-  border-radius: 32px 32px 0 0;
+  border-radius: 36px 36px 0 0;
   background: #f7f6f3;
 }
 
 .phone__island {
   position: absolute;
   z-index: 1;
-  top: 8px;
+  top: 7px;
   left: 50%;
-  width: 68px;
-  height: 20px;
+  width: 62px;
+  height: 18px;
   border-radius: 999px;
-  background: #111111;
+  background: #5c5c5c;
   transform: translateX(-50%);
 }
 
@@ -241,16 +241,18 @@
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   column-gap: clamp(10px, 1.11vw, 16px);
-  align-items: center;
+  align-items: start;
   margin-bottom: clamp(16px, 1.8vw, 24px);
 }
 
 .step__number {
   grid-row: 1 / span 2;
+  align-self: start;
   display: grid;
   place-items: center;
-  width: 44px;
-  height: 44px;
+  /* Title line plus the first sentence under it. The next sentence sits below the circle. */
+  width: calc(var(--fs-card-title) * 1.2 + var(--fs-card-sub) * 1.35 + 2px);
+  height: calc(var(--fs-card-title) * 1.2 + var(--fs-card-sub) * 1.35 + 2px);
   border-radius: 50%;
   background: var(--step-badge);
   color: var(--step);
