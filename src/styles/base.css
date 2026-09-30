@@ -3,7 +3,7 @@
    clamp(min, calc(base + slope), max) where the slope hits both ends. */
 
 :root {
-  --bg: #fbf9f5;
+  --bg: #fbf9f5; /* cream */
   --ink: #222222;
   --mute: #676767;
   --green: #4caf6a;
@@ -15,24 +15,23 @@
   --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', Pretendard,
     'Malgun Gothic', sans-serif;
 
-  /* Quieter scale, closer to Finch / Levla / Piona / Ponder than the 64px artboard type. */
   --fs-wordmark: 22px;
   --fs-wordmark-sm: 16px;
   --fs-nav: 15px;
-  --fs-h1: clamp(30px, 3.2vw, 48px);
-  --fs-h2: clamp(24px, 2.35vw, 34px);
-  --fs-h2-closing: clamp(24px, 2.5vw, 36px);
-  --fs-lede: clamp(16px, 1.35vw, 18px);
-  --fs-body: clamp(15px, 1.2vw, 17px);
-  --fs-card-title: clamp(18px, 1.5vw, 22px);
-  --fs-card-sub: 15px;
+  --fs-h1: clamp(40px, 4.7vw, 68px);
+  --fs-h2: clamp(28px, 2.8vw, 42px);
+  --fs-h2-closing: clamp(30px, 3.1vw, 46px);
+  --fs-lede: clamp(18px, 1.7vw, 24px);
+  --fs-body: clamp(16px, 1.45vw, 20px);
+  --fs-card-title: clamp(20px, 1.85vw, 26px);
+  --fs-card-sub: 16px;
   --fs-footer: 13px;
-  --fs-step-num: 16px;
-  --fs-cta: 16px;
+  --fs-step-num: 18px;
+  --fs-cta: 18px;
 
   --pad: clamp(16px, 2.778vw, 40px);
   --header-h: 64px;
-  --cta-h: 52px;
+  --cta-h: 56px;
 }
 
 *,
@@ -46,6 +45,7 @@ html {
   scroll-padding-top: 72px;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  background: #fbf9f5;
 }
 
 html::-webkit-scrollbar,

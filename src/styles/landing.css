@@ -24,6 +24,11 @@
   flex: 0 0 auto;
 }
 
+.mock-slot--save,
+.mock-slot--step {
+  position: relative;
+}
+
 .mock-slot--save {
   width: min(340px, 100%);
   aspect-ratio: 340 / 351;
@@ -33,6 +38,64 @@
   width: min(291px, 100%);
   aspect-ratio: 291 / 342;
   margin-inline: auto;
+}
+
+/* iPhone shell, sized inside the slot so it cannot stretch the card.
+   Hover lifts it slightly; it does not spin or cycle screens. */
+.phone {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 96%;
+  width: auto;
+  aspect-ratio: 390 / 844;
+  transform: translate(-50%, -50%);
+  transition: transform 0.45s cubic-bezier(0.22, 0.7, 0.2, 1);
+}
+
+.phone:hover {
+  transform: translate(-50%, calc(-50% - 10px));
+}
+
+.phone__bezel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 3.2%;
+  border-radius: 18%;
+  background: #1c1c1e;
+  box-shadow: 0 10px 28px rgba(34, 34, 34, 0.12);
+}
+
+.phone__screen {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 14%;
+  background: #fafaf7;
+}
+
+.phone__island {
+  position: absolute;
+  top: 4.6%;
+  left: 50%;
+  width: 28%;
+  height: 3.4%;
+  border-radius: 999px;
+  background: #000;
+  transform: translateX(-50%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .phone {
+    transition: none;
+  }
+
+  .phone:hover {
+    transform: translate(-50%, -50%);
+  }
 }
 
 /* ------------------------------------------------------------------ hero */
@@ -51,14 +114,14 @@
 
 .hero__inner {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(160px, 0.95fr);
+  grid-template-columns: minmax(0, 0.92fr) minmax(220px, 1.15fr);
   align-items: center;
-  gap: clamp(12px, 2vw, 24px);
+  gap: clamp(4px, 1vw, 12px);
   width: 100%;
   max-width: 1440px;
   height: 100%;
   margin-inline: auto;
-  padding-inline: clamp(20px, 11.6vw, 167px) clamp(16px, 6vw, 86px);
+  padding-inline: clamp(20px, 8vw, 120px) clamp(8px, 2.2vw, 32px);
 }
 
 .hero__copy {
@@ -88,9 +151,10 @@
 }
 
 .hero__art {
-  justify-self: end;
-  width: min(546px, 52dvh, 100%);
-  max-height: calc(100dvh - var(--header-h) - 24px);
+  justify-self: start;
+  width: min(720px, 72dvh, 112%);
+  margin-left: -6%;
+  max-height: calc(100dvh - var(--header-h) - 16px);
 }
 
 .hero__art img {
@@ -259,8 +323,8 @@
 .grow__clovy > .grow__question {
   position: absolute;
   left: 50%;
-  top: 52%;
-  width: 22%;
+  top: 56%;
+  width: 32%;
   height: auto;
   transform: translate(-50%, -50%);
 }
@@ -269,8 +333,12 @@
 
 .closing {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
-  margin-top: clamp(48px, 8.4vw, 121px);
+  min-height: clamp(300px, 38vh, 440px);
+  margin-top: clamp(40px, 6vw, 88px);
 }
 
 .closing__inner {
@@ -279,11 +347,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   text-align: center;
   width: 100%;
   max-width: 1440px;
   margin-inline: auto;
-  padding: clamp(36px, 5.5vw, 80px) var(--pad) clamp(48px, 7vw, 110px);
+  padding: clamp(40px, 5vw, 64px) var(--pad);
 }
 
 .closing__title {
@@ -354,8 +423,10 @@
   }
 
   .hero__art {
-    width: min(240px, 42dvh, 72%);
-    max-height: 38dvh;
+    width: min(300px, 46dvh, 86%);
+    max-height: 40dvh;
+    margin-left: 0;
+    justify-self: center;
   }
 
   .hero__art img {

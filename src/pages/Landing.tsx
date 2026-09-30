@@ -1,8 +1,13 @@
 import { Fragment } from 'react'
 import { AppStoreBadge } from '../components/AppStoreBadge'
+import { PhoneMockup } from '../components/PhoneMockup'
 import { useLang } from '../lang'
 
-const STEP_SLOTS = ['mock-write', 'mock-discover', 'mock-save-step'] as const
+const STEP_PHONES = [
+  { slot: 'mock-write', src: '/assets/write-screen.png' },
+  { slot: 'mock-discover', src: '/assets/discover-screen.png' },
+  { slot: 'mock-save-step', src: '/assets/hero-home.png' },
+] as const
 
 /* Renders one array entry per artboard line. The break is hidden under 768px, so
    it is preceded by a space that keeps the words apart once the copy reflows. */
@@ -54,7 +59,9 @@ export function Landing() {
               <Lines lines={t.save.body} />
             </p>
           </div>
-          <div className="mock-slot mock-slot--save" data-slot="mock-save" />
+          <div className="mock-slot mock-slot--save" data-slot="mock-save">
+            <PhoneMockup src="/assets/save-calendar.png" alt={t.a11y.savePhone} />
+          </div>
         </div>
       </section>
 
@@ -74,7 +81,9 @@ export function Landing() {
                     <Lines lines={step.body} />
                   </p>
                 </div>
-                <div className="mock-slot mock-slot--step" data-slot={STEP_SLOTS[index]} />
+                <div className="mock-slot mock-slot--step" data-slot={STEP_PHONES[index].slot}>
+                  <PhoneMockup src={STEP_PHONES[index].src} alt={t.a11y.stepPhones[index]} />
+                </div>
               </li>
             ))}
           </ol>
