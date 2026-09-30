@@ -15,7 +15,7 @@
   font-size: var(--fs-body);
   font-weight: 500;
   letter-spacing: -0.01em;
-  line-height: 1.43;
+  line-height: 1.5;
   text-wrap: pretty;
 }
 
@@ -124,6 +124,8 @@
 /* The two authored lines need ~780px in Segoe UI. Pull the art closer to the
    card edge so they stay on two lines at 1440. */
 .grow__card {
+  align-items: center;
+  min-height: 365px;
   gap: clamp(16px, 1.7vw, 24px);
   padding-right: clamp(16px, 3.9vw, 56px);
   padding-left: clamp(24px, 7.64vw, 110px);
@@ -180,8 +182,8 @@
   grid-row: 1 / span 2;
   display: grid;
   place-items: center;
-  width: clamp(44px, calc(37.31px + 1.714vw), 62px);
-  height: clamp(44px, calc(37.31px + 1.714vw), 62px);
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: var(--step-badge);
   color: var(--step);

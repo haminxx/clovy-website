@@ -24,22 +24,17 @@ The artboard is 1440 wide. Type interpolates between the 390 phone sizes and the
 1440 sizes (`clamp` with a slope that hits both ends), and stops growing above
 1440. Page background is `#FBF9F5`, muted copy `#676767`, actions `#4CAF6A`.
 
-Hero, the two soft bands, and the three step cards stack to a single column below
-800px. Authored line breaks drop below 768px. Below 720px the header wraps its
-nav onto a second row. The header Download control and the App Store pill stay
-at least 44px tall, and the pill label stays at least 16px.
+The header stays pinned to the top. Hero, the two soft bands, and the three step
+cards stack to a single column below 800px. Authored line breaks drop below 768px.
 
 Type is `-apple-system` first, so Apple platforms render the SF Pro the design was
-drawn in, then Segoe UI. Korean falls through to Apple SD Gothic Neo or Malgun
-Gothic.
+drawn in, then Segoe UI. Sizes follow a quieter marketing scale (header 22/15,
+hero up to 48, body 15–18) rather than the artboard’s 64px headlines.
 
 ## Language
 
-`KR | EN` in the header swaps every visible string. Copy lives in `src/copy.ts`
-as one entry per artboard line; the plumbing (context, `localStorage`,
-`documentElement.lang`) is in `src/lang.ts` and `src/components/LangProvider.tsx`.
-English is the default. The privacy link is labelled as English-only in Korean,
-because the Notion page is not translated.
+The site is English only for now. Korean strings remain in `src/copy.ts`, but the
+header language switch is gone and the page always renders the English copy.
 
 ## Content and links
 

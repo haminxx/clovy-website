@@ -15,23 +15,24 @@
   --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', Pretendard,
     'Malgun Gothic', sans-serif;
 
-  /* 390 → 1440 */
-  --fs-wordmark: clamp(32px, calc(26.06px + 1.524vw), 48px);
-  --fs-wordmark-sm: clamp(22px, calc(18.29px + 0.952vw), 32px);
-  --fs-nav: clamp(16px, calc(11.54px + 1.143vw), 28px);
-  --fs-h1: clamp(32px, calc(20.11px + 3.048vw), 64px);
-  --fs-h2: clamp(28px, calc(22.06px + 1.524vw), 44px);
-  --fs-h2-closing: clamp(30px, calc(21.83px + 2.095vw), 52px);
-  --fs-lede: clamp(16px, calc(10.06px + 1.524vw), 32px);
-  --fs-body: clamp(16px, calc(11.54px + 1.143vw), 28px);
-  --fs-card-title: clamp(22px, calc(18.29px + 0.952vw), 32px);
-  --fs-card-sub: clamp(14px, calc(12.51px + 0.381vw), 18px);
-  --fs-footer: clamp(14px, calc(10.29px + 0.952vw), 24px);
-  --fs-step-num: clamp(22px, calc(17.54px + 1.143vw), 34px);
-  --fs-cta: clamp(16px, calc(11.54px + 1.143vw), 28px);
+  /* Quieter scale, closer to Finch / Levla / Piona / Ponder than the 64px artboard type. */
+  --fs-wordmark: 22px;
+  --fs-wordmark-sm: 16px;
+  --fs-nav: 15px;
+  --fs-h1: clamp(30px, 3.2vw, 48px);
+  --fs-h2: clamp(24px, 2.35vw, 34px);
+  --fs-h2-closing: clamp(24px, 2.5vw, 36px);
+  --fs-lede: clamp(16px, 1.35vw, 18px);
+  --fs-body: clamp(15px, 1.2vw, 17px);
+  --fs-card-title: clamp(18px, 1.5vw, 22px);
+  --fs-card-sub: 15px;
+  --fs-footer: 13px;
+  --fs-step-num: 16px;
+  --fs-cta: 16px;
 
   --pad: clamp(16px, 2.778vw, 40px);
-  --cta-h: clamp(48px, calc(39.46px + 2.19vw), 71px);
+  --header-h: 64px;
+  --cta-h: 52px;
 }
 
 *,
@@ -42,6 +43,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 72px;
 }
 
 body {
@@ -84,15 +86,22 @@ a {
 /* ---------------------------------------------------------------- header */
 
 .site-header {
-  padding-block: clamp(20px, 3.2vw, 48px);
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  height: var(--header-h);
+  background: rgba(251, 249, 245, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(34, 34, 34, 0.06);
 }
 
 .site-header__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
-  min-height: clamp(44px, 5.556vw, 80px);
+  gap: 16px;
+  height: 100%;
 }
 
 .wordmark {
@@ -113,90 +122,24 @@ a {
 .site-nav {
   display: flex;
   align-items: center;
-  gap: clamp(20px, 5.069vw, 73px); /* About → Download pill */
-}
-
-/* The language switch rides closer to About than About does to the pill. */
-.site-nav__group {
-  display: flex;
-  align-items: center;
-  gap: clamp(12px, 1.944vw, 28px);
+  gap: 20px;
+  height: 100%;
 }
 
 .site-nav__link {
   display: inline-flex;
   align-items: center;
-  min-height: 44px;
+  justify-content: center;
+  height: 100%;
   font-size: var(--fs-nav);
   font-weight: 500;
+  line-height: 1;
   letter-spacing: -0.01em;
   text-decoration: none;
 }
 
 .site-nav__link:hover {
   opacity: 0.6;
-}
-
-/* ------------------------------------------------------------ language */
-
-.lang-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: clamp(4px, 0.417vw, 6px);
-  margin: 0;
-  padding: 0 clamp(10px, 0.8vw, 12px);
-  min-height: 44px;
-  border: 1.5px solid currentColor;
-  border-radius: 999px;
-  background: none;
-  color: inherit;
-  font: inherit;
-  font-size: clamp(13px, 1.1vw, 16px);
-  line-height: 1;
-  letter-spacing: -0.01em;
-  cursor: pointer;
-}
-
-.lang-toggle:hover {
-  background: rgba(34, 34, 34, 0.06);
-}
-
-.lang-toggle:focus-visible {
-  outline: 2px solid var(--green);
-  outline-offset: 2px;
-}
-
-.lang-toggle__sep {
-  opacity: 0.35;
-}
-
-.lang-toggle__slot {
-  position: relative;
-  display: grid;
-  justify-items: center;
-}
-
-/* Reserves the bold width in every state so emphasis never nudges the row. */
-.lang-toggle__slot::after {
-  content: attr(data-label);
-  grid-area: 1 / 1;
-  height: 0;
-  visibility: hidden;
-  font-weight: 700;
-}
-
-.lang-toggle__label {
-  grid-area: 1 / 1;
-}
-
-.lang-toggle__underline {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -0.28em;
-  height: 1.5px;
-  border-radius: 1.5px;
-  background: currentColor;
 }
 
 /* ---------------------------------------------------------------- buttons */
@@ -206,6 +149,7 @@ a {
   align-items: center;
   justify-content: center;
   text-align: center;
+  line-height: 1;
   text-decoration: none;
   transition: transform 0.15s ease, opacity 0.15s ease;
 }
@@ -215,18 +159,18 @@ a {
   opacity: 0.92;
 }
 
-/* Nav "Download" — Figma 656:21981, 221 × 51, radius 25.5. */
+/* Compact header Download pill. Text is centered on both axes. */
 .btn--nav {
   background: var(--green);
   color: #ffffff;
-  border-radius: 25.5px;
+  border-radius: 999px;
   font-size: var(--fs-nav);
   font-weight: 500;
   letter-spacing: -0.01em;
-  min-width: clamp(120px, 15.35vw, 221px);
-  min-height: 44px;
-  height: clamp(44px, 3.542vw, 51px);
-  padding-inline: clamp(14px, 1.2vw, 20px);
+  line-height: 1;
+  min-width: 108px;
+  height: 36px;
+  padding: 0 16px;
 }
 
 .btn--pill {
@@ -252,16 +196,17 @@ a {
   gap: clamp(8px, 0.9vw, 14px);
   width: fit-content;
   max-width: 100%;
-  min-width: min(467px, 100%);
+  min-width: min(280px, 100%);
   min-height: var(--cta-h);
-  padding: 0 clamp(16px, 2vw, 28px);
-  border-radius: 35.5px;
+  height: var(--cta-h);
+  padding: 0 22px;
+  border-radius: 999px;
   background: var(--green);
   color: #ffffff;
   font-size: var(--fs-cta);
   font-weight: 600;
   letter-spacing: -0.01em;
-  line-height: 1.1;
+  line-height: 1;
   text-align: center;
   text-decoration: none;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
@@ -280,7 +225,7 @@ a {
 
 .store-cta__logo {
   display: block;
-  width: clamp(16px, 1.67vw, 24px);
+  width: 16px;
   height: auto;
   flex: 0 0 auto;
 }
@@ -288,8 +233,8 @@ a {
 /* ---------------------------------------------------------------- footer */
 
 .site-footer {
-  padding-top: clamp(28px, 4.2vw, 56px);
-  padding-bottom: clamp(20px, 2.3vw, 36px);
+  padding-top: 16px;
+  padding-bottom: 16px;
 }
 
 .site-footer .shell {
@@ -300,18 +245,18 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px 32px;
+  gap: 12px 24px;
   flex-wrap: wrap;
-  min-height: 44px;
+  min-height: 0;
 }
 
 .site-footer__links {
   display: flex;
   align-items: center;
-  gap: clamp(16px, 3.194vw, 46px);
+  gap: 20px;
   font-size: var(--fs-footer);
   font-weight: 400;
-  line-height: 1.4;
+  line-height: 1;
 }
 
 .site-footer__links a {
@@ -374,24 +319,3 @@ a {
   }
 }
 
-/* Wordmark, switch, About and the pill stop fitting on one line around here. */
-@media (max-width: 720px) {
-  .site-header {
-    padding-block: 16px 8px;
-  }
-
-  .site-header__inner {
-    flex-wrap: wrap;
-    gap: 8px 16px;
-  }
-
-  .site-nav {
-    width: 100%;
-    justify-content: flex-end;
-    gap: 12px;
-  }
-
-  .btn--nav {
-    min-width: 0;
-  }
-}
