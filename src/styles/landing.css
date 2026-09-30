@@ -27,35 +27,37 @@
 .mock-slot--save,
 .mock-slot--step {
   position: relative;
+  overflow: hidden;
 }
 
 .mock-slot--save {
-  width: min(340px, 100%);
-  aspect-ratio: 340 / 351;
+  width: min(250px, 42%);
+  aspect-ratio: 288 / 400;
+  flex: 0 0 auto;
+  align-self: flex-end;
 }
 
 .mock-slot--step {
-  width: min(291px, 100%);
-  aspect-ratio: 291 / 342;
+  width: min(250px, 88%);
+  aspect-ratio: 288 / 400;
   margin-inline: auto;
 }
 
-/* iPhone shell, sized inside the slot so it cannot stretch the card.
-   Hover lifts it slightly; it does not spin or cycle screens. */
+/* Visible window is the top two-thirds of the phone. The slot clips the rest. */
 .phone {
   container-type: inline-size;
   position: absolute;
   left: 50%;
-  top: 50%;
-  height: 96%;
-  width: auto;
+  top: 0;
+  width: calc(100% - 12px);
+  height: auto;
   aspect-ratio: 288 / 600;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   transition: transform 0.45s cubic-bezier(0.22, 0.7, 0.2, 1);
 }
 
 .phone:hover {
-  transform: translate(-50%, calc(-50% - 10px));
+  transform: translateX(-50%) translateY(-8px);
 }
 
 .phone__shell {
@@ -141,7 +143,7 @@
   }
 
   .phone:hover {
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
   }
 }
 
@@ -193,28 +195,8 @@
   line-height: 1.25;
 }
 
-.hero__cta-fit {
-  display: grid;
-  width: max-content;
-  max-width: 100%;
+.hero__cta {
   margin-top: clamp(16px, 3dvh, 40px);
-}
-
-.hero__cta-sizer {
-  height: 0;
-  overflow: hidden;
-  visibility: hidden;
-  white-space: nowrap;
-  font-size: var(--fs-h1);
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 1;
-}
-
-.hero__cta-fit .hero__cta {
-  width: 100%;
-  min-width: 0;
-  margin-top: 0;
 }
 
 .hero__art {
@@ -255,6 +237,11 @@
   padding: 10px clamp(20px, 7.2vw, 104px) 10px clamp(24px, 9vw, 129px);
   background: var(--soft);
   border-radius: clamp(24px, 2.99vw, 43px);
+}
+
+.save__card {
+  overflow: hidden;
+  padding-bottom: 0;
 }
 
 .save__copy,
@@ -307,6 +294,7 @@
   display: flex;
   flex-direction: column;
   min-width: 0;
+  overflow: hidden;
   border: 1px solid var(--card-border);
   border-radius: 20px;
   padding: clamp(16px, 1.94vw, 28px) clamp(14px, 1.67vw, 24px) 0;
@@ -501,8 +489,13 @@
     margin-inline: auto;
   }
 
+  .save__card {
+    padding-bottom: 0;
+  }
+
   .mock-slot--save {
     align-self: center;
+    width: min(250px, 72%);
   }
 
   .steps {

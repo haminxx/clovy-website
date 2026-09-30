@@ -27,11 +27,11 @@
   --fs-card-sub: 16px;
   --fs-footer: 13px;
   --fs-step-num: 18px;
-  --fs-cta: 18px;
+  --fs-cta: 16px;
 
   --pad: clamp(16px, 2.778vw, 40px);
   --header-h: 64px;
-  --cta-h: 56px;
+  --cta-h: 40px;
 }
 
 *,
@@ -168,18 +168,17 @@ a {
   opacity: 0.92;
 }
 
-/* Header Download pill — long, with the label centered. */
+/* Header Download pill. Height sits just above the label. */
 .btn--nav {
   background: var(--green);
   color: #ffffff;
   border-radius: 999px;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   letter-spacing: -0.01em;
   line-height: 1;
-  min-width: clamp(156px, 16vw, 240px);
-  height: 40px;
-  padding: 0 40px;
+  height: 34px;
+  padding: 0 16px;
 }
 
 .btn--pill {
@@ -202,13 +201,12 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
+  gap: 8px;
   width: fit-content;
   max-width: 100%;
-  min-width: min(460px, 100%);
   min-height: var(--cta-h);
   height: var(--cta-h);
-  padding: 0 36px;
+  padding: 0 18px;
   border-radius: 999px;
   background: var(--green);
   color: #ffffff;
@@ -234,7 +232,7 @@ a {
 
 .store-cta__logo {
   display: block;
-  width: 18px;
+  width: 15px;
   height: auto;
   flex: 0 0 auto;
 }
