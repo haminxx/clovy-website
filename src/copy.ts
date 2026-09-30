@@ -6,6 +6,7 @@ export type Lang = (typeof LANGS)[number]
 export type Copy = {
   documentTitle: string
   nav: { about: string; download: string }
+  store: { cta: string }
   hero: { title: string[]; lede: string[] }
   save: { title: string; body: string[] }
   features: {
@@ -21,7 +22,7 @@ export type Copy = {
     language: string
     home: string
     appStore: string
-    heroPhone: string
+    heroArt: string
     savePhone: string
     stepPhones: string[]
     growSeed: string
@@ -32,6 +33,7 @@ export type Copy = {
 const EN: Copy = {
   documentTitle: 'Clovy — Find the little moments worth keeping.',
   nav: { about: 'About', download: 'Download' },
+  store: { cta: 'Download on the App Store' },
   hero: {
     title: ['Find the little', 'moments', 'worth keeping.'],
     lede: ['Keep the happy and lucky moments', 'from your day – one little clover at a time.'],
@@ -70,7 +72,7 @@ const EN: Copy = {
     language: 'Language, English',
     home: 'Clovy — home',
     appStore: 'Download Clovy on the App Store',
-    heroPhone: 'Clovy home screen with today’s clovers',
+    heroArt: 'Clovy, a small clover character surrounded by clovers',
     savePhone: 'Clovy daily list of saved moments',
     stepPhones: [
       'Clovy journal entry screen asking “How was your day?”',
@@ -85,6 +87,7 @@ const EN: Copy = {
 const KO: Copy = {
   documentTitle: 'Clovy — 하루 속 작은 행운을 모아보세요.',
   nav: { about: '소개', download: '다운로드' },
+  store: { cta: 'App Store에서 다운로드' },
   hero: {
     title: ['하루에 숨어 있는', '작은 행운을', '모아보세요.'],
     lede: ['오늘 하루의 기쁘고 운 좋았던 순간을', '작은 클로버 한 장으로 남겨보세요.'],
@@ -122,7 +125,7 @@ const KO: Copy = {
     language: 'Language, Korean',
     home: 'Clovy — 홈',
     appStore: 'App Store에서 Clovy 다운로드',
-    heroPhone: '오늘의 클로버가 보이는 Clovy 홈 화면',
+    heroArt: '클로버에 둘러싸인 Clovy 캐릭터',
     savePhone: '저장한 순간이 날짜별로 정리된 Clovy 화면',
     stepPhones: [
       '“오늘 하루는 어땠나요?”라고 묻는 Clovy 기록 화면',

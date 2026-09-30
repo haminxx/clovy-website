@@ -1,60 +1,37 @@
-/* Design source: Figma "Clovy 개발" — Landing Page 637:6325 (1440 × 2896).
-   Sizes are expressed as clamp(min, design/14.4 vw, design px) so the 1440 artboard
-   renders 1:1 at 1440 and scales down proportionally. */
-
-/* Inter stands in for SF Pro away from Apple platforms, where -apple-system
-   already resolves to the SF Pro the design was drawn in. */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url('/assets/fonts/inter-latin.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304,
-    U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url('/assets/fonts/inter-latin-ext.woff2') format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308,
-    U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113,
-    U+2C60-2C7F, U+A720-A7FF;
-}
+/* Design source: Figma "Clovy 개발" — Landing Page 656:21978 (1440 × 3065).
+   Type scales from the 390 phone sizes up to the 1440 artboard:
+   clamp(min, calc(base + slope), max) where the slope hits both ends. */
 
 :root {
+  --bg: #fbf9f5;
   --ink: #222222;
+  --mute: #676767;
   --green: #4caf6a;
-  --band: #ededed;
-  --app-bg: #fafaf7;
-  --hairline: #e5e5e5;
+  --step: #2e7d53;
+  --soft: #f4f6ed;
+  --card-border: #dfdfdf;
+  --step-badge: #dff3d9;
 
-  --font: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Inter', 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, 'Apple SD Gothic Neo', Pretendard, 'Noto Sans KR',
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', Pretendard,
     'Malgun Gothic', sans-serif;
 
-  /* Type ramp (design px @1440) */
-  --fs-wordmark: clamp(28px, 3.333vw, 48px); /* 48 */
-  --fs-nav: clamp(18px, 2.083vw, 30px); /* 30 */
-  --fs-h1: clamp(38px, 4.444vw, 64px); /* 64 */
-  --fs-h2: clamp(27px, 3.056vw, 44px); /* 44 */
-  --fs-h2-closing: clamp(30px, 3.611vw, 52px); /* 52 */
-  --fs-lede: clamp(19px, 2.222vw, 32px); /* 32 */
-  --fs-body: clamp(17px, 1.944vw, 28px); /* 28 */
-  --fs-step-number: clamp(23px, 2.639vw, 38px); /* 38 */
-  --fs-step-title: clamp(19px, 2.222vw, 32px); /* 32 */
-  --fs-small: clamp(15px, 1.667vw, 24px); /* 24 */
+  /* 390 → 1440 */
+  --fs-wordmark: clamp(32px, calc(26.06px + 1.524vw), 48px);
+  --fs-wordmark-sm: clamp(22px, calc(18.29px + 0.952vw), 32px);
+  --fs-nav: clamp(16px, calc(11.54px + 1.143vw), 28px);
+  --fs-h1: clamp(32px, calc(20.11px + 3.048vw), 64px);
+  --fs-h2: clamp(28px, calc(22.06px + 1.524vw), 44px);
+  --fs-h2-closing: clamp(30px, calc(21.83px + 2.095vw), 52px);
+  --fs-lede: clamp(16px, calc(10.06px + 1.524vw), 32px);
+  --fs-body: clamp(16px, calc(11.54px + 1.143vw), 28px);
+  --fs-card-title: clamp(22px, calc(18.29px + 0.952vw), 32px);
+  --fs-card-sub: clamp(14px, calc(12.51px + 0.381vw), 18px);
+  --fs-footer: clamp(14px, calc(10.29px + 0.952vw), 24px);
+  --fs-step-num: clamp(22px, calc(17.54px + 1.143vw), 34px);
+  --fs-cta: clamp(16px, calc(11.54px + 1.143vw), 28px);
 
-  /* Inter runs wider than the SF Pro the artboard was drawn in; a touch of
-     negative tracking brings body copy back to the intended line lengths. */
-  --track-body: -0.015em;
-
-  /* Frame details */
-  --phone-border: 3px;
-  --phone-radius: clamp(18px, 2.083vw, 30px);
+  --pad: clamp(16px, 2.778vw, 40px);
+  --cta-h: clamp(48px, calc(39.46px + 2.19vw), 71px);
 }
 
 *,
@@ -69,12 +46,12 @@ html {
 
 body {
   margin: 0;
-  background: #ffffff;
+  background: var(--bg);
   color: var(--ink);
   font-family: var(--font);
-  font-synthesis-weight: none;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  overflow-x: clip;
 }
 
 img {
@@ -96,18 +73,18 @@ a {
   color: inherit;
 }
 
-/* Page container — the 1440 artboard, centred, with the nav's 106px side gutter. */
+/* Page container — the 1440 artboard, centred. Header logo sits at x=106. */
 .shell {
   width: 100%;
   max-width: 1440px;
   margin-inline: auto;
-  padding-inline: clamp(24px, 7.361vw, 106px);
+  padding-inline: clamp(20px, 7.361vw, 106px);
 }
 
 /* ---------------------------------------------------------------- header */
 
 .site-header {
-  padding-block: clamp(24px, 4.583vw, 66px);
+  padding-block: clamp(20px, 3.2vw, 48px);
 }
 
 .site-header__inner {
@@ -130,7 +107,7 @@ a {
 }
 
 .wordmark--sm {
-  font-size: clamp(20px, 2.222vw, 32px); /* 32 */
+  font-size: var(--fs-wordmark-sm);
 }
 
 .site-nav {
@@ -147,8 +124,11 @@ a {
 }
 
 .site-nav__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   font-size: var(--fs-nav);
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: -0.01em;
   text-decoration: none;
 }
@@ -164,14 +144,14 @@ a {
   align-items: center;
   gap: clamp(4px, 0.417vw, 6px);
   margin: 0;
-  padding: 0 clamp(7px, 0.694vw, 10px);
-  min-height: clamp(26px, 2.778vw, 40px);
+  padding: 0 clamp(10px, 0.8vw, 12px);
+  min-height: 44px;
   border: 1.5px solid currentColor;
   border-radius: 999px;
   background: none;
   color: inherit;
   font: inherit;
-  font-size: clamp(13px, 1.389vw, 20px);
+  font-size: clamp(13px, 1.1vw, 16px);
   line-height: 1;
   letter-spacing: -0.01em;
   cursor: pointer;
@@ -235,18 +215,18 @@ a {
   opacity: 0.92;
 }
 
-/* Nav "Download" — the artboard's 177 × 51 block (Figma 637:6329), rounded and
-   in Clovy green so it reads as the brand action rather than an Apple badge. */
+/* Nav "Download" — Figma 656:21981, 221 × 51, radius 25.5. */
 .btn--nav {
   background: var(--green);
   color: #ffffff;
-  border-radius: 999px;
+  border-radius: 25.5px;
   font-size: var(--fs-nav);
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: -0.01em;
-  min-width: clamp(104px, 12.292vw, 177px);
-  min-height: clamp(32px, 3.542vw, 51px);
-  padding-inline: clamp(10px, 0.972vw, 14px);
+  min-width: clamp(120px, 15.35vw, 221px);
+  min-height: 44px;
+  height: clamp(44px, 3.542vw, 51px);
+  padding-inline: clamp(14px, 1.2vw, 20px);
 }
 
 .btn--pill {
@@ -262,43 +242,58 @@ a {
   color: #ffffff;
 }
 
-/* ------------------------------------------------------- App Store badge */
+/* ------------------------------------------------------- App Store CTA */
 
-/* Apple's badge artwork, used unmodified per the App Store Marketing
-   Guidelines: only the rendered height is set, the width follows the artwork's
-   own ratio, and nothing is layered over it. The 48px floor keeps it above
-   Apple's 40px onscreen minimum at every breakpoint, and the surrounding
-   margins stay well clear of the required quarter-height of clear space. */
-.store-badge {
-  display: block;
+/* Figma 656:22005 — 467 × 71, radius 35.5, green, soft shadow. */
+.store-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 0.9vw, 14px);
   width: fit-content;
-  line-height: 0;
+  max-width: 100%;
+  min-width: min(467px, 100%);
+  min-height: var(--cta-h);
+  padding: 0 clamp(16px, 2vw, 28px);
+  border-radius: 35.5px;
+  background: var(--green);
+  color: #ffffff;
+  font-size: var(--fs-cta);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
   transition: transform 0.15s ease, opacity 0.15s ease;
 }
 
-.store-badge:hover {
+.store-cta:hover {
   transform: translateY(-1px);
   opacity: 0.92;
 }
 
-.store-badge:focus-visible {
-  outline: 2px solid var(--green);
-  outline-offset: 6px;
-  border-radius: 4px;
+.store-cta:focus-visible {
+  outline: 2px solid var(--step);
+  outline-offset: 4px;
 }
 
-.store-badge__art {
+.store-cta__logo {
   display: block;
-  height: clamp(48px, 4.931vw, 71px);
-  width: auto;
-  max-width: none;
+  width: clamp(16px, 1.67vw, 24px);
+  height: auto;
+  flex: 0 0 auto;
 }
 
 /* ---------------------------------------------------------------- footer */
 
 .site-footer {
-  padding-top: clamp(36px, 5.417vw, 78px);
-  padding-bottom: clamp(24px, 2.292vw, 33px);
+  padding-top: clamp(28px, 4.2vw, 56px);
+  padding-bottom: clamp(20px, 2.3vw, 36px);
+}
+
+.site-footer .shell {
+  padding-inline: clamp(20px, 4.236vw, 61px);
 }
 
 .site-footer__inner {
@@ -307,16 +302,16 @@ a {
   justify-content: space-between;
   gap: 16px 32px;
   flex-wrap: wrap;
-  min-height: clamp(32px, 3.194vw, 46px);
-  padding-inline: clamp(24px, 4.236vw, 61px) clamp(24px, 1.944vw, 28px);
+  min-height: 44px;
 }
 
 .site-footer__links {
   display: flex;
   align-items: center;
-  gap: clamp(18px, 3.194vw, 46px);
-  font-size: var(--fs-small);
-  line-height: 1.667; /* 40 of the artboard's 24px footer type */
+  gap: clamp(16px, 3.194vw, 46px);
+  font-size: var(--fs-footer);
+  font-weight: 400;
+  line-height: 1.4;
 }
 
 .site-footer__links a {
@@ -380,19 +375,23 @@ a {
 }
 
 /* Wordmark, switch, About and the pill stop fitting on one line around here. */
-@media (max-width: 559px) {
+@media (max-width: 720px) {
   .site-header {
-    padding-block: 20px;
+    padding-block: 16px 8px;
   }
 
   .site-header__inner {
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 8px 16px;
   }
 
   .site-nav {
     width: 100%;
-    justify-content: space-between;
-    gap: 16px;
+    justify-content: flex-end;
+    gap: 12px;
+  }
+
+  .btn--nav {
+    min-width: 0;
   }
 }

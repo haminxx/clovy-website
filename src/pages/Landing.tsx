@@ -1,9 +1,8 @@
 import { Fragment } from 'react'
 import { AppStoreBadge } from '../components/AppStoreBadge'
-import { PhoneFrame } from '../components/PhoneFrame'
 import { useLang } from '../lang'
 
-const STEP_VARIANTS = ['write', 'discover', 'saveStep'] as const
+const STEP_SLOTS = ['mock-write', 'mock-discover', 'mock-save-step'] as const
 
 /* Renders one array entry per artboard line. The break is hidden under 768px, so
    it is preceded by a space that keeps the words apart once the copy reflows. */
@@ -31,7 +30,7 @@ export function Landing() {
   return (
     <main>
       <section className="hero">
-        <div className="shell hero__inner">
+        <div className="hero__inner">
           <div className="hero__copy">
             <h1 className="hero__title">
               <Lines lines={t.hero.title} />
@@ -42,27 +41,25 @@ export function Landing() {
             <AppStoreBadge className="hero__cta" />
           </div>
           <div className="hero__art">
-            <PhoneFrame variant="hero" alt={t.a11y.heroPhone} />
+            <img src="/assets/hero-clovy.png" alt={t.a11y.heroArt} />
           </div>
         </div>
       </section>
 
-      <section className="save">
-        <div className="shell save__inner">
+      <section className="band">
+        <div className="band__card save__card">
           <div className="save__copy">
             <h2 className="section-title">{t.save.title}</h2>
             <p className="section-body">
               <Lines lines={t.save.body} />
             </p>
           </div>
-          <div className="save__art">
-            <PhoneFrame variant="save" alt={t.a11y.savePhone} />
-          </div>
+          <div className="mock-slot mock-slot--save" data-slot="mock-save" />
         </div>
       </section>
 
       <section className="features" id="features">
-        <div className="shell features__inner">
+        <div className="features__inner">
           <h2 className="section-title">
             <Lines lines={t.features.title} />
           </h2>
@@ -70,24 +67,22 @@ export function Landing() {
           <ol className="steps">
             {t.features.steps.map((step, index) => (
               <li className="step" key={step.number}>
-                <p className="step__heading">
+                <div className="step__head">
                   <span className="step__number">{step.number}</span>
-                  <span className="step__title">{step.title}</span>
-                </p>
-                <p className="step__body">
-                  <Lines lines={step.body} />
-                </p>
-                <div className="step__art">
-                  <PhoneFrame variant={STEP_VARIANTS[index]} alt={t.a11y.stepPhones[index]} />
+                  <p className="step__title">{step.title}</p>
+                  <p className="step__body">
+                    <Lines lines={step.body} />
+                  </p>
                 </div>
+                <div className="mock-slot mock-slot--step" data-slot={STEP_SLOTS[index]} />
               </li>
             ))}
           </ol>
         </div>
       </section>
 
-      <section className="grow">
-        <div className="shell grow__inner">
+      <section className="band">
+        <div className="band__card grow__card">
           <div className="grow__copy">
             <h2 className="section-title">{t.grow.title}</h2>
             <p className="section-body">
@@ -95,21 +90,30 @@ export function Landing() {
             </p>
           </div>
           <div className="grow__art">
-            <img className="grow__seed" src="/assets/clover-seed.png" alt={t.a11y.growSeed} />
-            <img className="grow__line" src="/assets/arrow-line.svg" alt="" aria-hidden="true" />
-            <span className="grow__head">
-              <img src="/assets/arrow-head.svg" alt="" aria-hidden="true" />
-            </span>
+            <img className="grow__sprout" src="/assets/clover-seed.png" alt={t.a11y.growSeed} />
+            <img className="grow__arrow" src="/assets/arrow-right.svg" alt="" aria-hidden="true" />
             <span className="grow__clovy">
               <img src="/assets/clovy-gray.png" alt={t.a11y.growClovy} />
-              <img className="grow__question" src="/assets/question.svg" alt="" aria-hidden="true" />
+              <img className="grow__question" src="/assets/question-mark.svg" alt="" aria-hidden="true" />
             </span>
           </div>
         </div>
       </section>
 
       <section className="closing">
-        <div className="shell closing__inner">
+        <img
+          className="closing__accent closing__accent--left"
+          src="/assets/clover-accent-left.png"
+          alt=""
+          aria-hidden="true"
+        />
+        <img
+          className="closing__accent closing__accent--right"
+          src="/assets/clover-accent-right.png"
+          alt=""
+          aria-hidden="true"
+        />
+        <div className="closing__inner">
           <h2 className="closing__title">
             <Lines lines={t.closing.title} />
           </h2>
