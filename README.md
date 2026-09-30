@@ -47,8 +47,8 @@ header language switch is gone and the page always renders the English copy.
   aspect ratios locked. Artwork for those slots is filled in later.
 - `About` in the nav jumps to the `#features` section (the 01–03 cards).
 - `Privacy Policy` opens the Notion policy in a new tab, and `Contact` opens a
-  pre-addressed mail draft. The old `/privacy` and `/contact` routes redirect to
-  the same destinations.
+  Gmail compose window addressed to christianjameslee1@gmail.com. The old
+  `/privacy` and `/contact` routes redirect to the same destinations.
 
 ## Deploying to Firebase Hosting
 

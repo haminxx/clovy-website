@@ -6,13 +6,13 @@ import { useLang } from './lang'
 import { Landing } from './pages/Landing'
 import { NotFound } from './pages/NotFound'
 import { usePath } from './router'
-import { CONTACT_MAILTO, PRIVACY_URL } from './site'
+import { CONTACT_GMAIL, PRIVACY_URL } from './site'
 
 /* Privacy and contact used to be pages on this site; both now live off-site, so
    the old paths hand off instead of 404ing. */
 const MOVED: Record<string, string> = {
   '/privacy': PRIVACY_URL,
-  '/contact': CONTACT_MAILTO,
+  '/contact': CONTACT_GMAIL,
 }
 
 function Site() {

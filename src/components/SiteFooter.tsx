@@ -1,5 +1,5 @@
 import { useLang } from '../lang'
-import { CONTACT_MAILTO, PRIVACY_URL } from '../site'
+import { CONTACT_GMAIL, PRIVACY_URL } from '../site'
 import { Link } from './Link'
 
 export function SiteFooter() {
@@ -15,7 +15,9 @@ export function SiteFooter() {
           <a href={PRIVACY_URL} target="_blank" rel="noreferrer">
             {t.footer.privacy}
           </a>
-          <a href={CONTACT_MAILTO}>{t.footer.contact}</a>
+          <a href={CONTACT_GMAIL} target="_blank" rel="noreferrer">
+            {t.footer.contact}
+          </a>
           <span className="site-footer__copy">{t.footer.copyright}</span>
         </div>
       </div>

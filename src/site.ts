@@ -5,4 +5,5 @@ export const PRIVACY_URL =
 
 export const CONTACT_EMAIL = 'christianjameslee1@gmail.com'
 
-export const CONTACT_MAILTO = `mailto:${CONTACT_EMAIL}?subject=Clovy%20inquiry`
+/* Opens Gmail with the message already addressed to Christian. */
+export const CONTACT_GMAIL = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(CONTACT_EMAIL)}&su=${encodeURIComponent('Clovy inquiry')}`
