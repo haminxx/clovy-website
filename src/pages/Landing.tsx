@@ -5,9 +5,9 @@ import { MotionRoot, Reveal } from '../components/Reveal'
 import { useLang } from '../lang'
 
 const STEP_PHONES = [
-  { slot: 'mock-write', src: '/assets/write-screen.png' },
-  { slot: 'mock-discover', src: '/assets/discover-screen.png' },
-  { slot: 'mock-save-step', src: '/assets/hero-home.png' },
+  { slot: 'mock-write', src: '/assets/mock-write.png' },
+  { slot: 'mock-discover', src: '/assets/mock-discover.png' },
+  { slot: 'mock-save-step', src: '/assets/mock-save-step.png' },
 ] as const
 
 /* Renders one array entry per artboard line. The break is hidden under 768px, so
@@ -62,7 +62,7 @@ export function Landing() {
             </p>
           </Reveal>
           <Reveal className="mock-slot mock-slot--save" delay={0.22}>
-            <PhoneMockup src="/assets/save-calendar.png" alt={t.a11y.savePhone} />
+            <PhoneMockup src="/assets/mock-save.png" alt={t.a11y.savePhone} />
           </Reveal>
         </div>
       </section>
@@ -128,7 +128,9 @@ export function Landing() {
         />
         <Reveal className="closing__inner">
           <h2 className="closing__title">
-            <Lines lines={t.closing.title} />
+            {t.closing.title[0]}
+            <br />
+            {t.closing.title[1]}
           </h2>
           <AppStoreBadge className="closing__cta" />
         </Reveal>
