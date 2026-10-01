@@ -32,7 +32,7 @@
 .mock-slot--save {
   width: min(280px, 34%);
   flex: 0 0 auto;
-  align-self: center;
+  align-self: flex-end;
 }
 
 .mock-slot--step {
@@ -187,9 +187,13 @@
 
 .save__card {
   overflow: hidden;
-  align-items: center;
-  padding-top: clamp(18px, 2vw, 28px);
-  padding-bottom: clamp(18px, 2vw, 28px);
+  align-items: flex-end;
+  padding-top: clamp(28px, 3vw, 48px);
+  padding-bottom: 0;
+}
+
+.save__copy {
+  align-self: center;
 }
 
 .save__copy,
@@ -233,7 +237,7 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: start;
-  gap: clamp(16px, 3.89vw, 56px);
+  gap: clamp(12px, 2.4vw, 56px);
   list-style: none;
   margin: clamp(24px, 3.7vw, 53px) 0 0;
   padding: 0;
@@ -294,9 +298,38 @@
   line-height: 1.35;
 }
 
+/* Discover stays on its two authored lines at every width. */
+.step__body--fixed {
+  container-type: inline-size;
+}
+
+.step__lines {
+  display: block;
+  white-space: nowrap;
+  font-size: clamp(11px, 8cqi, var(--fs-card-sub));
+  line-height: 1.35;
+}
+
 .step .mock-slot--step {
+  position: relative;
   width: min(292px, 100%);
+  aspect-ratio: 292 / 337;
   margin-top: 0;
+}
+
+.step .phone--shell {
+  position: absolute;
+  inset: 0;
+}
+
+.step .phone--shell .phone__screen,
+.step .phone--shell .phone__ui {
+  height: 100%;
+}
+
+.step .phone--shell .phone__ui {
+  object-fit: cover;
+  object-position: top center;
 }
 
 /* ------------------------------------------------------------------ grow */
@@ -463,18 +496,25 @@
     margin-inline: auto;
   }
 
-  .mock-slot--save {
-    align-self: center;
-    width: min(280px, 78%);
+  .save__card {
+    padding-bottom: 0;
   }
 
-  .steps {
-    grid-template-columns: 1fr;
-    max-width: 420px;
+  .mock-slot--save {
+    align-self: center;
+    width: min(260px, 72%);
   }
 
   .features__inner {
     padding-inline: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .steps {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    margin-inline: auto;
   }
 }
 

@@ -11,16 +11,17 @@ const STEP_PHONES = [
 ] as const
 
 /* Renders one array entry per artboard line. The break is hidden under 768px, so
-   it is preceded by a space that keeps the words apart once the copy reflows. */
-function Lines({ lines }: { lines: string[] }) {
+   it is preceded by a space that keeps the words apart once the copy reflows.
+   `keep` leaves the break in place at every width. */
+function Lines({ lines, keep = false }: { lines: string[]; keep?: boolean }) {
   return (
     <>
       {lines.map((line, index) => (
         <Fragment key={line}>
           {index > 0 && (
             <>
-              {' '}
-              <br className="br-d" />
+              {keep ? null : ' '}
+              <br className={keep ? undefined : 'br-d'} />
             </>
           )}
           {line}
@@ -62,7 +63,7 @@ export function Landing() {
             </p>
           </Reveal>
           <Reveal className="mock-slot mock-slot--save" delay={0.22}>
-            <PhoneMockup src="/assets/mock-save.png" alt={t.a11y.savePhone} />
+            <PhoneMockup shell src="/assets/mock-save.png" alt={t.a11y.savePhone} />
           </Reveal>
         </div>
       </section>
@@ -81,8 +82,14 @@ export function Landing() {
                 <div className="step__head">
                   <span className="step__number">{step.number}</span>
                   <p className="step__title">{step.title}</p>
-                  <p className="step__body">
-                    <Lines lines={step.body} />
+                  <p className={step.body.length > 1 ? 'step__body step__body--fixed' : 'step__body'}>
+                    {step.body.length > 1 ? (
+                      <span className="step__lines">
+                        <Lines keep lines={step.body} />
+                      </span>
+                    ) : (
+                      <Lines lines={step.body} />
+                    )}
                   </p>
                 </div>
                 <div className="mock-slot mock-slot--step" data-slot={STEP_PHONES[index].slot}>
