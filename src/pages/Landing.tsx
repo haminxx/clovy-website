@@ -86,7 +86,7 @@ export function Landing() {
                   </p>
                 </div>
                 <div className="mock-slot mock-slot--step" data-slot={STEP_PHONES[index].slot}>
-                  <PhoneMockup src={STEP_PHONES[index].src} alt={t.a11y.stepPhones[index]} />
+                  <PhoneMockup shell src={STEP_PHONES[index].src} alt={t.a11y.stepPhones[index]} />
                 </div>
               </Reveal>
             ))}
