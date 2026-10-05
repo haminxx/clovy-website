@@ -52,16 +52,16 @@ header language switch is gone and the page always renders the English copy.
 
 ## Deploying to Firebase Hosting
 
-Live at <https://clovy-website.web.app>.
+Production hosting is the `getclovy` project at <https://getclovy.web.app>.
 
-`firebase.json` and `.firebaserc` are committed and point at the `clovy-website`
+`firebase.json` and `.firebaserc` are committed and point at the `getclovy`
 project, serve `dist`, and rewrite everything to `index.html` so the client routes
 resolve on a hard refresh.
 
 ```bash
 npm install -g firebase-tools
 firebase login
-firebase deploy --only hosting --project clovy-website
+firebase deploy --only hosting --project getclovy
 ```
 
 `firebase deploy` runs `npm run build` first via the `predeploy` hook, so there is
@@ -72,5 +72,5 @@ resolves to the `public` directory, `dist/`.)
 To preview a change before it goes live:
 
 ```bash
-firebase hosting:channel:deploy preview --project clovy-website
+firebase hosting:channel:deploy preview --project getclovy
 ```
