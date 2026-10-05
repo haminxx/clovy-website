@@ -228,7 +228,7 @@
 .steps {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  align-items: start;
+  align-items: stretch;
   gap: clamp(12px, 2.4vw, 56px);
   list-style: none;
   margin: clamp(24px, 3.7vw, 53px) 0 0;
@@ -236,6 +236,7 @@
 }
 
 .step {
+  container-type: inline-size;
   display: flex;
   flex-direction: column;
   min-width: 0;
@@ -247,13 +248,15 @@
 }
 
 .step__head {
+  --step-title: clamp(15px, 9.4cqi, 30px);
+  --step-body: clamp(12px, 5.6cqi, 18px);
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
-  column-gap: clamp(10px, 1.11vw, 16px);
+  column-gap: clamp(8px, 4cqi, 16px);
   align-items: start;
-  /* Hold the tallest card (Discover's second line) so the three phones start together. */
-  min-height: calc(var(--fs-card-title) * 1.2 + 2px + var(--fs-card-sub) * 1.35 * 2);
-  margin-bottom: clamp(16px, 1.8vw, 24px);
+  /* Title plus two description lines, so every card starts the phone together. */
+  min-height: calc(var(--step-title) * 1.2 + 2px + var(--step-body) * 1.35 * 2);
+  margin-bottom: clamp(12px, 5cqi, 24px);
 }
 
 .step__number {
@@ -262,12 +265,12 @@
   display: grid;
   place-items: center;
   /* Title line plus the first sentence under it. The next sentence sits below the circle. */
-  width: calc(var(--fs-card-title) * 1.2 + var(--fs-card-sub) * 1.35 + 2px);
-  height: calc(var(--fs-card-title) * 1.2 + var(--fs-card-sub) * 1.35 + 2px);
+  width: calc(var(--step-title) * 1.2 + var(--step-body) * 1.35 + 2px);
+  height: calc(var(--step-title) * 1.2 + var(--step-body) * 1.35 + 2px);
   border-radius: 50%;
   background: var(--step-badge);
   color: var(--step);
-  font-size: var(--fs-step-num);
+  font-size: clamp(20px, 12cqi, 39px);
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1;
@@ -275,16 +278,17 @@
 
 .step__title {
   margin: 0;
-  font-size: var(--fs-card-title);
+  font-size: var(--step-title);
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.2;
+  white-space: nowrap;
 }
 
 .step__body {
   margin: 2px 0 0;
   color: var(--mute);
-  font-size: var(--fs-card-sub);
+  font-size: var(--step-body);
   font-weight: 500;
   letter-spacing: -0.01em;
   line-height: 1.35;
@@ -293,12 +297,14 @@
 /* Discover stays on its two authored lines at every width. */
 .step__body--fixed {
   container-type: inline-size;
+  width: 100%;
+  min-width: 0;
 }
 
 .step__lines {
   display: block;
   white-space: nowrap;
-  font-size: clamp(11px, 8cqi, var(--fs-card-sub));
+  font-size: min(1em, 8.2cqi);
   line-height: 1.35;
 }
 
@@ -306,7 +312,7 @@
   position: relative;
   width: min(292px, 100%);
   aspect-ratio: 292 / 337;
-  margin-top: 0;
+  margin-top: auto;
 }
 
 .step .phone--shell {
