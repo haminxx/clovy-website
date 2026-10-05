@@ -17,12 +17,12 @@ export function SiteHeader() {
         <nav className="site-nav">
           <a
             className="site-nav__link"
-            href="/#features"
+            href="/#save"
             onClick={(event) => {
               if (!onLanding) return
               event.preventDefault()
-              document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })
-              window.history.replaceState({}, '', '/#features')
+              document.getElementById('save')?.scrollIntoView({ behavior: 'smooth' })
+              window.history.replaceState({}, '', '/#save')
             }}
           >
             {t.nav.about}

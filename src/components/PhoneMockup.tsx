@@ -10,7 +10,6 @@ export function PhoneMockup({ src, alt, shell = false }: PhoneMockupProps) {
     return (
       <div className="phone phone--shell">
         <div className="phone__screen">
-          <span className="phone__island" aria-hidden="true" />
           <img className="phone__ui" src={src} alt={alt} />
         </div>
       </div>

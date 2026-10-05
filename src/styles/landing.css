@@ -72,18 +72,6 @@
   background: #f7f6f3;
 }
 
-.phone--shell .phone__island {
-  position: absolute;
-  z-index: 1;
-  top: 8px;
-  left: 50%;
-  width: 62px;
-  height: 18px;
-  border-radius: 999px;
-  background: #282627;
-  transform: translateX(-50%);
-}
-
 .phone--shell .phone__ui {
   display: block;
   width: 100%;
@@ -164,6 +152,10 @@
 
 .band {
   padding-inline: var(--pad);
+}
+
+#save {
+  scroll-margin-top: var(--header-h);
 }
 
 .band + .band,

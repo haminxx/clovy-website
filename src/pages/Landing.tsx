@@ -54,7 +54,7 @@ export function Landing() {
         </div>
       </section>
 
-      <section className="band">
+      <section className="band" id="save">
         <div className="band__card save__card">
           <Reveal className="save__copy">
             <h2 className="section-title">{t.save.title}</h2>
